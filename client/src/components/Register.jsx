@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';  // Importa SweetAlert
 import Nav from './Nav';
 import Footer from './Footer';
 
@@ -10,7 +11,8 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      console.log('Datos del formulario:', { firstName, lastName, email, password }); // Agregamos este log
+      console.log('Datos del formulario:', { firstName, lastName, email, password });
+
       const response = await fetch('http://localhost:3000/api/users', {
         method: 'POST',
         headers: {
@@ -20,9 +22,14 @@ const Register = () => {
       });
 
       if (response.ok) {
-        console.log('Registro exitoso');
+        // Registro exitoso, muestra la alerta con SweetAlert
+        Swal.fire({
+          title: 'Registro exitoso',
+          text: '¡Tu cuenta ha sido creada!',
+          icon: 'success',
+        });
       } else {
-        console.error('Error en el registro. Estado de la respuesta:', response.status); // Agregamos este log
+        console.error('Error en el registro. Estado de la respuesta:', response.status);
       }
     } catch (error) {
       console.error('Error al intentar registrar:', error);

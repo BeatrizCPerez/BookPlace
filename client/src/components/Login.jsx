@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';  // Importa SweetAlert
 import Nav from './Nav';
 import Footer from './Footer';
 
@@ -22,6 +23,13 @@ const Login = () => {
         const data = await response.json();
         console.log('Inicio de sesión exitoso');
         console.log('Token:', data.token);
+
+        // Muestra la alerta de SweetAlert al iniciar sesión
+        Swal.fire({
+          title: 'Inicio de sesión exitoso',
+          text: '¡Has iniciado sesión!',
+          icon: 'success',
+        });
 
         // Puedes almacenar el token en el estado del componente o en el localStorage según tus necesidades
 
