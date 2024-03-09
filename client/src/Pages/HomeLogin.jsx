@@ -6,7 +6,7 @@ const HomeLogin = () => {
   const [newVideo, setNewVideo] = useState({
     Img: '',
     Name: '',
-    Year: 0,
+    Year: '',
     Director: '',
     Description: '',
   });
@@ -245,18 +245,18 @@ const HomeLogin = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="year">
-              Año:
-            </label>
-            <input
-              type="number"
-              id="year"
-              name="year"
-              value={newVideo.Year}
-              onChange={e => setNewVideo({ ...newVideo, Year: parseInt(e.target.value) || 0 })}
-              className="border border-gray-300 p-2 w-full"
-            />
-          </div>
+  <label className="block text-sm font-bold mb-2" htmlFor="year">
+    Año:
+  </label>
+  <input
+    type="number"
+    id="year"
+    name="year"
+    value={newVideo.Year}
+    onChange={e => setNewVideo({ ...newVideo, Year: parseInt(e.target.value) || 0 })}
+    className="border border-gray-300 p-2 w-full"
+  />
+</div>
           <div className="mb-4">
             <label className="block text-sm font-bold mb-2" htmlFor="director">
               Director:
