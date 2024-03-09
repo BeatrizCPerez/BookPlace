@@ -4,7 +4,8 @@ import Contact from '../components/Contact'
 import List from '../components/List'
 import Footer from '../components/Footer'
 import Testimonials from '../components/Testimonials'
-import Slider from 'react-slick'
+import Price from '../components/Price'
+import SubscribeForm from '../components/SubscribeForm'
 
 function App() {
 
@@ -13,9 +14,10 @@ function App() {
     <>
      <Nav />
      <Header />
-     <Slider />
      <List />
      <Contact />
+     <Price />
+     <SubscribeForm />
      <Testimonials />
      <Footer />
  
