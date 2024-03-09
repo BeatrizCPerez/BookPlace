@@ -89,130 +89,139 @@ const HomeLogin = () => {
       </div>
 
       {/* Contenido principal */}
-      <div className="w-full lg:w-3/4 p-4 lg:pl-48"> {/* Ajuste de margen con el menú izquierdo */}
+      <div className="w-full p-4 lg:pl-48"> {/* Ajuste de margen con el menú izquierdo */}
         {/* Barra de navegación superior */}
-        <div className="flex justify-between items-center mb-4 w-full lg:w-3/4 p-4 bg-white text-black fixed top-0 z-10">
-    <h1 className="text-3xl font-bold">Panel de Control</h1>
-    <Link to='/'><button className="bg-red-500 text-white px-4 py-2 lg:mr-4 mb-4 lg:mb-0 ">Salir</button></Link>
-  </div>
+        <div className="flex justify-between items-center mb-4 lg:mb-8 lg:px-4 bg-white text-black fixed top-0 z-10 w-full">
+          <h1 className="text-3xl font-bold">Panel de Control</h1>
+          <Link to='/'>
+            <button className="bg-red-500 text-white px-4 py-2 lg:mr-4 mb-4 lg:mb-0">Salir</button>
+          </Link>
+        </div>
 
-        <div className="mb-8 mt-20">
+        <div className="mb-8 mt-12 lg:mt-20">
           {/* Lista de películas */}
           <h2 className="text-xl ml-4 font-bold mb-2">Lista de Películas</h2>
-          <table className="min-w-full border border-gray-300">
-            <thead>
-              <tr>
-                <th className="border border-gray-300 p-5">Imagen</th>
-                <th className="border border-gray-300 p-2">Nombre</th>
-                <th className="border border-gray-300 p-2">Año</th>
-                <th className="border border-gray-300 p-2">Director</th>
-                <th className="border border-gray-300 p-2">Descripción</th>
-                <th className="border border-gray-300 p-2">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {videos.map(video => (
-                <tr key={video.id} className={isEditing && editingVideo.id === video.id ? 'bg-gray-200' : ''}>
-                  <td className="border border-gray-300 p-2">
-                    {isEditing && editingVideo.id === video.id ? (
-                      <input
-                        type="text"
-                        value={editingVideo.Img}
-                        onChange={e => setEditingVideo({ ...editingVideo, Img: e.target.value })}
-                      />
-                    ) : (
-                      <img src={video.Img} alt={video.Name} className="max-w-full max-h-20" />
-                    )}
-                  </td>
-                  <td className="border border-gray-300 p-2">
-                    {isEditing && editingVideo.id === video.id ? (
-                      <input
-                        type="text"
-                        value={editingVideo.Name}
-                        onChange={e => setEditingVideo({ ...editingVideo, Name: e.target.value })}
-                      />
-                    ) : (
-                      video.Name
-                    )}
-                  </td>
-                  <td className="border border-gray-300 p-2">
-                    {isEditing && editingVideo.id === video.id ? (
-                      <input
-                        type="number"
-                        value={editingVideo.Year}
-                        onChange={e =>
-                          setEditingVideo({
-                            ...editingVideo,
-                            Year: parseInt(e.target.value) || 0,
-                          })
-                        }
-                      />
-                    ) : (
-                      video.Year
-                    )}
-                  </td>
-                  <td className="border border-gray-300 p-2">
-                    {isEditing && editingVideo.id === video.id ? (
-                      <input
-                        type="text"
-                        value={editingVideo.Director}
-                        onChange={e =>
-                          setEditingVideo({ ...editingVideo, Director: e.target.value })
-                        }
-                      />
-                    ) : (
-                      video.Director
-                    )}
-                  </td>
-                  <td className="border border-gray-300 p-2">
-                    {isEditing && editingVideo.id === video.id ? (
-                      <textarea
-                        value={editingVideo.Description}
-                        onChange={e =>
-                          setEditingVideo({ ...editingVideo, Description: e.target.value })
-                        }
-                      />
-                    ) : (
-                      video.Description
-                    )}
-                  </td>
-                  <td className="border border-gray-300 p-2">
-                    {isEditing && editingVideo.id === video.id ? (
-                      <>
-                        <button
-                          onClick={handleEditVideo}
-                          className="bg-green-500 text-white px-2 py-1 mr-2"
-                        >
-                          Guardar
-                        </button>
-                        <button
-                          onClick={handleCancelEdit}
-                          className="bg-red-500 text-white px-2 py-1"
-                        >
-                          Cancelar
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          onClick={() => handleEditClick(video)}
-                          className="bg-blue-500 text-white px-2 w-20 py-1 mr-2"
-                        >
-                          Editar
-                        </button>
-                        <button
-                          onClick={() => handleDeleteVideo(video.id)}
-                          className="bg-red-500 text-white w-20 px-2 py-1"
-                        >
-                          Eliminar
-                        </button>
-                      </>
-                    )}
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="min-w-full border border-gray-300">
+              <thead>
+                <tr>
+                  <th className="border border-gray-300 p-5">Imagen</th>
+                  <th className="border border-gray-300 p-2">Nombre</th>
+                  <th className="border border-gray-300 p-2">Año</th>
+                  <th className="border border-gray-300 p-2">Director</th>
+                  <th className="border border-gray-300 p-2">Descripción</th>
+                  <th className="border border-gray-300 p-2">Acciones</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {videos.map(video => (
+                  <tr key={video.id} className={isEditing && editingVideo.id === video.id ? 'bg-gray-200' : ''}>
+                    <td className="border border-gray-300 p-2">
+                      {isEditing && editingVideo.id === video.id ? (
+                        <input
+                          type="text"
+                          value={editingVideo.Img}
+                          onChange={e => setEditingVideo({ ...editingVideo, Img: e.target.value })}
+                          className="w-full"
+                        />
+                      ) : (
+                        <img src={video.Img} alt={video.Name} className="max-w-full max-h-20" />
+                      )}
+                    </td>
+                    <td className="border border-gray-300 p-2">
+                      {isEditing && editingVideo.id === video.id ? (
+                        <input
+                          type="text"
+                          value={editingVideo.Name}
+                          onChange={e => setEditingVideo({ ...editingVideo, Name: e.target.value })}
+                          className="w-full"
+                        />
+                      ) : (
+                        video.Name
+                      )}
+                    </td>
+                    <td className="border border-gray-300 p-2">
+                      {isEditing && editingVideo.id === video.id ? (
+                        <input
+                          type="number"
+                          value={editingVideo.Year}
+                          onChange={e =>
+                            setEditingVideo({
+                              ...editingVideo,
+                              Year: parseInt(e.target.value) || 0,
+                            })
+                          }
+                          className="w-full"
+                        />
+                      ) : (
+                        video.Year
+                      )}
+                    </td>
+                    <td className="border border-gray-300 p-2">
+                      {isEditing && editingVideo.id === video.id ? (
+                        <input
+                          type="text"
+                          value={editingVideo.Director}
+                          onChange={e =>
+                            setEditingVideo({ ...editingVideo, Director: e.target.value })
+                          }
+                          className="w-full"
+                        />
+                      ) : (
+                        video.Director
+                      )}
+                    </td>
+                    <td className="border border-gray-300 p-2">
+                      {isEditing && editingVideo.id === video.id ? (
+                        <textarea
+                          value={editingVideo.Description}
+                          onChange={e =>
+                            setEditingVideo({ ...editingVideo, Description: e.target.value })
+                          }
+                          className="w-full"
+                        />
+                      ) : (
+                        video.Description
+                      )}
+                    </td>
+                    <td className="border border-gray-300 p-2">
+                      {isEditing && editingVideo.id === video.id ? (
+                        <>
+                          <button
+                            onClick={handleEditVideo}
+                            className="bg-green-500 text-white px-2 py-1 mr-2"
+                          >
+                            Guardar
+                          </button>
+                          <button
+                            onClick={handleCancelEdit}
+                            className="bg-red-500 text-white px-2 py-1"
+                          >
+                            Cancelar
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => handleEditClick(video)}
+                            className="bg-blue-500 text-white px-2 w-20 py-1 mr-2"
+                          >
+                            Editar
+                          </button>
+                          <button
+                            onClick={() => handleDeleteVideo(video.id)}
+                            className="bg-red-500 text-white w-20 px-2 py-1"
+                          >
+                            Eliminar
+                          </button>
+                        </>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div>
@@ -245,18 +254,18 @@ const HomeLogin = () => {
             />
           </div>
           <div className="mb-4">
-  <label className="block text-sm font-bold mb-2" htmlFor="year">
-    Año:
-  </label>
-  <input
-    type="number"
-    id="year"
-    name="year"
-    value={newVideo.Year}
-    onChange={e => setNewVideo({ ...newVideo, Year: parseInt(e.target.value) || 0 })}
-    className="border border-gray-300 p-2 w-full"
-  />
-</div>
+            <label className="block text-sm font-bold mb-2" htmlFor="year">
+              Año:
+            </label>
+            <input
+              type="number"
+              id="year"
+              name="year"
+              value={newVideo.Year}
+              onChange={e => setNewVideo({ ...newVideo, Year: parseInt(e.target.value) || 0 })}
+              className="border border-gray-300 p-2 w-full"
+            />
+          </div>
           <div className="mb-4">
             <label className="block text-sm font-bold mb-2" htmlFor="director">
               Director:
