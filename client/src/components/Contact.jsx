@@ -55,7 +55,7 @@ const Contact = () => {
         </p>
         <h2 className="text-gray-100 text-md mb-1 font-medium title-font">Contactanos</h2>
         <p className="leading-relaxed mb-3 text-gray-300 text-sm">
-          ¿Quieres alquilar una película? Rellena el siguiente formulario. Si solo deseas información, completa tus datos.
+        ¿Quieres alquilar una película? Rellena el siguiente formulario. Si solo deseas información, completa tus datos.
         </p>
 
         <div className="relative mb-2">
@@ -63,14 +63,37 @@ const Contact = () => {
             Nombre
           </label>
           <input
-            type="text"
+            type="Nombre"
             id="name"
             name="name"
             autoComplete="name"
             className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
           />
         </div>
-
+        <div className="relative mb-2">
+          <label htmlFor="telefono" className="leading-7 text-xs text-gray-300">
+            Número de teléfono
+          </label>
+          <input
+            type="number"
+            id="telefono"
+            name="telefono"
+            autoComplete="tel"
+            className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+          />
+        </div>
+        <div className="relative mb-2">
+          <label htmlFor="email" className="leading-7 text-xs text-gray-300">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autoComplete="email"
+            className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+          />
+        </div>
         <div className="relative mb-2">
           <label htmlFor="eresSocio" className="leading-7 text-xs text-gray-300">
             ¿Eres socio?
@@ -87,87 +110,44 @@ const Contact = () => {
         </div>
 
         {isSocio && (
-          <>
-            {/* Parte del formulario específica para socios */}
-            <div className="relative mb-2">
-              <label htmlFor="numeroSocio" className="leading-7 text-xs text-gray-300">
-                Número de socio
-              </label>
-              <input
-                type="text"
-                id="numeroSocio"
-                name="numeroSocio"
-                className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-            <div className="relative mb-2">
-              <label htmlFor="peliculaDeseada" className="leading-7 text-xs text-gray-300">
-                ¿Qué película desea alquilar?
-                <span className="block text-xs text-gray-400 mt-1">En caso de querer información, dejar en blanco.</span>
-              </label>
-              <input
-                type="text"
-                id="peliculaDeseada"
-                name="peliculaDeseada"
-                className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-          </>
-        )}
-
-        {isSocio ? (
           <div className="relative mb-2">
-            <label htmlFor="fechaAlquiler" className="leading-7 text-xs text-gray-300">
-              Fecha de alquiler
+            <label htmlFor="numeroSocio" className="leading-7 text-xs text-gray-300">
+              Número de socio
             </label>
             <input
-              type="date"
-              id="fechaAlquiler"
-              name="fechaAlquiler"
+              type="text"
+              id="numeroSocio"
+              name="numeroSocio"
               className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
             />
           </div>
-        ) : (
-          <>
-            {/* Resto del formulario para no socios */}
-            <div className="relative mb-2">
-              <label htmlFor="email" className="leading-7 text-xs text-gray-300">
-                Email
-              </label>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                autoComplete="Email"
-                className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-            <div className="relative mb-2">
-              <label htmlFor="quieresSerSocio" className="leading-7 text-xs text-gray-300">
-                ¿Quieres ser socio?
-              </label>
-              <select
-                id="quieresSerSocio"
-                name="quieresSerSocio"
-                className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
-                onChange={handleHacerseSocioChange}
-              >
-                <option value="si">Sí</option>
-                <option value="no">No</option>
-              </select>
-            </div>
-            <div className="relative mb-2">
-              <label htmlFor="comentario" className="leading-7 text-xs text-gray-300">
-                Comentario
-              </label>
-              <textarea
-                id="comentario"
-                name="comentario"
-                className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
-              ></textarea>
-            </div>
-          </>
+          
         )}
+
+{isSocio && (<div className="relative mb-2">
+          <label htmlFor="fechaAlquiler" className="leading-7 text-xs text-gray-300">
+            Fecha de alquiler
+          </label>
+          <input
+            type="date"
+            id="fechaAlquiler"
+            name="fechaAlquiler"
+            className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+          />
+        </div>)}
+
+        <div className="relative mb-2">
+          <label htmlFor="peliculaDeseada" className="leading-7 text-xs text-gray-300">
+            Película que quieres
+            <span className="block text-xs text-gray-400 mt-1">En caso de querer información, dejar en blanco.</span>
+          </label>
+          <input
+            type="text"
+            id="peliculaDeseada"
+            name="peliculaDeseada"
+            className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+          />
+        </div>
 
         <button
           className="text-white bg-green-500 border-0 py-1 px-4 focus:outline-none hover:bg-green-600 rounded text-sm"
@@ -183,5 +163,4 @@ const Contact = () => {
     </section>
   );
 };
-
-export default Contact;
+export default Contact
