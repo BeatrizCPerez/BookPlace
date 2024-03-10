@@ -16,7 +16,7 @@ const Nav = () => {
         </Link>
 
         <button
-          className="lg:hidden text-white focus:outline-none"
+          className="lg:hidden md:hidden text-white focus:outline-none"
           onClick={toggleMenu}
         >
           {isMenuOpen ? (
@@ -62,7 +62,7 @@ const Nav = () => {
         </div>
 
         {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-gray-800 bg-opacity-80 backdrop-filter backdrop-blur-lg p-4 rounded-md shadow-md">
+          <div className="lg:hidden md:hidden absolute top-full left-0 right-0 bg-gray-800 bg-opacity-80 backdrop-filter backdrop-blur-lg p-4 rounded-md shadow-md">
             {/* Contenido del menú desplegable */}
             <Link to="/Loginpage" className="text-green-500 text-xl w-25 block py-2 hover:text-gray-500">
               Iniciar sesión
