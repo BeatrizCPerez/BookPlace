@@ -29,11 +29,11 @@ const Price = () => {
                 <div id="content" className="">
                   <div id="icon" className="my-5">
                     <img
-                      src="ruta_del_icono_normal.png"
+                      src="https://cdn.icon-icons.com/icons2/3002/PNG/512/film_icon_187986.png"
                       alt="Icono Película Normal"
-                      className="h-12 w-12 mx-auto"
+                      className="h-12 w-12 bg-white rounded-full mx-auto"
                     />
-                    <p className="text-gray-500 text-sm pt-2">
+                    <p className="text-gray-300 text-xl pt-2">
                       Películas para un público general
                     </p>
                   </div>
@@ -68,17 +68,17 @@ const Price = () => {
                 <div id="content" className="">
                   <div id="icon" className="my-5">
                     <img
-                      src="ruta_del_icono_exclusivo.png"
+                      src="https://cdn.icon-icons.com/icons2/3002/PNG/512/film_icon_187986.png"
                       alt="Icono Película Exclusiva"
-                      className="h-12 w-12 mx-auto"
+                      className="h-12 w-12 rounded-full bg-white mx-auto"
                     />
-                    <p className="text-gray-500 text-sm pt-2">
+                    <p className="text-gray-300 text-xl pt-2">
                       Películas exclusivas y populares
                     </p>
                   </div>
                   <div id="contain" className="leading-8 mb-10 text-lg font-light">
                     <ul>
-                      <li>Alquiler por 48 horas</li>
+                      <li>Alquiler a partir de 48 horas</li>
                       <li>Calidad HD</li>
                       <li>Acceso a contenido exclusivo</li>
                     </ul>
@@ -93,7 +93,6 @@ const Price = () => {
                   </div>
                 </div>
               </div>
-              {/* Repite el bloque similar para el plan "VIP" */}
               <div
                 id="plan"
                 className="rounded-lg text-center overflow-hidden w-full border border-gray-800 transform hover:shadow-2xl hover:scale-105 transition duration-200 ease-in"
@@ -107,17 +106,17 @@ const Price = () => {
                 <div id="content" className="">
                   <div id="icon" className="my-5">
                     <img
-                      src="ruta_del_icono_vip.png"
+                      src="https://cdn.icon-icons.com/icons2/3002/PNG/512/film_icon_187986.png"
                       alt="Icono Película VIP"
-                      className="h-12 w-12 mx-auto"
+                      className="h-12 w-12 rounded-full bg-white mx-auto"
                     />
-                    <p className="text-gray-500 text-sm pt-2">
-                      Películas extremadamente exclusivas y de alta calidad
+                    <p className="text-gray-300 text-xl pt-2">
+                      Películas extremadamente exclusivas
                     </p>
                   </div>
                   <div id="contain" className="leading-8 mb-10 text-lg font-light">
                     <ul>
-                      <li>Alquiler por 48 horas</li>
+                      <li>Alquiler a partir de 48 horas</li>
                       <li>Calidad 4K</li>
                       <li>Acceso a estrenos exclusivos</li>
                     </ul>
