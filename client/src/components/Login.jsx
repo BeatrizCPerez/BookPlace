@@ -45,13 +45,17 @@ const Login = () => {
 
   return (
     <>
-      <section className="bg-nuevayork max-content w-screen h-screen bg-cover bg-center bg-no-repeat">
+       <section className="relative">
+        <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0">
+          <source src="../src/assets/videoLogin.mp4" type="video/mp4" />
+          Tu navegador no admite la etiqueta de video.
+        </video>
         <Nav />
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-16">
           <div className="relative flex mt-[100px] flex-col min-w-0 break-words w-full mb-6 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3 z-0">
-                <h6 className="text-white text-lg font-bold">Sign in with</h6>
+                <h6 className="text-white text-lg font-bold">Inicia sesión</h6>
               </div>
               <div className="btn-wrapper text-center">
                 {/* Botones de inicio de sesión con Google y Github */}
@@ -59,8 +63,8 @@ const Login = () => {
               <hr className="mt-6 border-b-1 border-blueGray-300" />
             </div>
             <div className="flex-auto px-6 lg:px-10 py-10 pt-0">
-              <div className="text-white text-center mb-3 font-bold">
-                <small>Or sign in with credentials</small>
+              <div className="text-gray-600 text-center mb-3 font-bold">
+                <small></small>
               </div>
               <form>
                 <div className="relative w-full mb-4">
@@ -110,9 +114,9 @@ const Login = () => {
                 </div>
                 <div className="text-center mt-6">
                   <p className="text-sm text-blueGray-500">
-                    Don't have an account?{' '}
-                    <Link to="/RegisterPage" className="text-blue-400 hover:text-blue-600">
-                      Register here.
+                    No tienes cuenta?{' '}
+                    <Link to="/RegisterPage" className="text-blue-700 font-bold  hover:text-blue-600">
+                      Registrate aqui
                     </Link>
                   </p>
                 </div>
@@ -120,17 +124,6 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <footer className="relative pt-8 pb-6 mt-2">
-          <div className="container mx-auto px-2">
-            <div className="flex flex-wrap items-center md:justify-between justify-center">
-              <div className="w-full md:w-6/12 px-4 mx-auto text-center">
-                <div className="text-sm text-blueGray-500 font-semibold py-1">
-                  {/* Enlaces del footer */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
       </section>
       <Footer />
     </>

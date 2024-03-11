@@ -38,19 +38,23 @@ const Register = () => {
 
   return (
     <>
-      <section className="bg-registrer max-content w-screen h-screen bg-cover bg-center bg-no-repeat">
+      <section className="relative">
+        <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0">
+          <source src="../src/assets/videoRegister.mp4" type="video/mp4" />
+          Tu navegador no admite la etiqueta de video.
+        </video>
         <Nav />
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-6">
           <div className="relative flex mt-[100px] flex-col min-w-0 break-words w-full mb-6 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3 z-0">
-                <h6 className="text-white text-sm font-bold">Create an account</h6>
+                <h6 className="text-white text-sm font-bold">Crea una cuenta</h6>
               </div>
               <hr className="mt-6 border-b-1 border-blueGray-300" />
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
               <div className="text-white text-center mb-3 font-bold">
-                <small>Register with your credentials</small>
+                <small>Registrate con tus datos</small>
               </div>
               <form>
                 <div className="relative w-full mb-3">
@@ -107,24 +111,13 @@ const Register = () => {
                     className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                     type="button"
                   >
-                    Register
+                    Registrarse
                   </button>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <footer className="relative pt-8 pb-6 mt-2">
-          <div className="container mx-auto px-2">
-            <div className="flex flex-wrap items-center md:justify-between justify-center">
-              <div className="w-full md:w-6/12 px-4 mx-auto text-center">
-                <div className="text-sm text-blueGray-500 font-semibold py-1">
-                  {/* Footer links */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
       </section>
       <Footer />
     </>

@@ -7,8 +7,9 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'nuevayork': 'url("https://i.blogs.es/0a44a9/dc-peliculas/1366_2000.webp")',
-        'registrer': 'url("https://cdn.sortiraparis.com/images/80/66131/994455-avatar-frontiers-of-pandora-le-jeu-d-ubisoft-est-passe-gold.jpg")'
+        'Login': 'url("https://fotografias.larazon.es/clipping/cmsimages01/2023/06/01/341A2EFC-88F2-44C6-B79F-369BFEEA6086/imagen-archivo-libros_97.jpg?crop=6067,3413,x0,y45&width=1600&height=900&optimize=low&format=webply")',
+        'registrer': 'url("https://www.latercera.com/resizer/wAlqO3o0TJT9Aw9QDYRBiHRr3CM=/900x600/smart/cloudfront-us-east-1.images.arcpublishing.com/copesa/PDF2GPQTENESHNN4C5OO6OLBRE.jpg")',
+        'header': 'url("https://www.julianmarquina.es/wp-content/uploads/Los-libros-son-uno-de-los-bienes-materiales-mas-preciados-que-tenemos-en-casa-y-en-nuestras-vidas.jpg")'
       }
     },
   },

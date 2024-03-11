@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import Testimonials from '../components/Testimonials'
 import Price from '../components/Price'
 import SubscribeForm from '../components/SubscribeForm'
+import About from '../components/About'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
     <>
      <Nav />
      <Header />
+     <About />
      <List />
      <Contact />
      <Price />

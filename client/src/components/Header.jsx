@@ -1,29 +1,87 @@
 import React from 'react';
-import { Parallax } from 'react-parallax';
+import Fade from 'react-reveal/Fade';
 
 const Header = () => {
-  return (
-    <Parallax bgImage="https://blogs.uninter.edu.mx/ESCAT/wp-content/uploads/2021/10/Venom-simbionte-resena2-2021-2.jpg" strength={400}>
-      <div className="relative h-[70vh] md:h-screen"> {/* Ajusta la altura para dispositivos móviles y grandes */}
-        <div className="absolute inset-0 bg-opacity-0 bg-black"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
-          <h1 className="font-bold text-4xl md:text-5xl lg:w-10/12 text-center ">
-            Alquila tus películas favoritas
-          </h1>
-          <p className="mt-6 text-xl font-bold text-black bg-opacity-80 bg-blue-800 rounded-lg p-4 lg:w-6/12 text-center shadow-md">
-            Descubre un mundo de entretenimiento desde la comodidad de tu hogar. 
-          </p>
-          <div className="mt-10">
-            <button type="button" title="Start watching" className="w-40 h-12 px-4 text-center rounded-md border-4 border-red-500 transition bg-blue-600 hover:bg-yellow-400 active:bg-yellow-400 focus:bg-yellow-300">
-              <span className="block text-gray-300 font-bold text-lg">
-                Ver Películas
-              </span>
-            </button>
-          </div>
+ return (
+    <div className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
+      <video
+        autoPlay
+        loop
+        muted
+        className="absolute w-full h-full object-cover"
+        style={{ zIndex: -1 }}
+      >
+        <source src="../src/assets/video.mp4" type="video/mp4" />
+      </video>
+      <div className="py-12 md:py-16 lg:py-20 bg-header relative" style={{ zIndex: 1 }}>
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+        <div className="container m-auto px-6 space-y-8 text-white md:px-12 lg:px-20 relative z-10">
+          <Fade bottom cascade>
+            <div className="justify-center text-center gap-6 md:text-left md:flex lg:items-center lg:gap-16">
+              <div className="order-last mb-6 space-y-6 md:mb-0 md:w-6/12 lg:w-6/12">
+                <h1 className="text-4xl text-gray-300 font-bold md:text-5xl relative z-20">
+                 <span className="relative inline-block">
+                    ¡Descubre ediciones exclusivas y lleva tus lecturas al siguiente nivel!
+                 </span>
+                </h1>
+                <p className="text-lg relative z-20">
+                 Únete a nuestra comunidad de lectores y accede a las ediciones más exclusivas que harán volar tu imaginación.
+                </p>
+                <div className="flex flex-row-reverse flex-wrap justify-center gap-4 md:gap-6 md:justify-end">
+                 <button
+                    type="button"
+                    title="Comenzar a comprar"
+                    className="w-full py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600 sm:w-max"
+                 >
+                    <span className="block text-white font-semibold">Reservar ahora</span>
+                 </button>
+                 <button
+                    type="button"
+                    title="Más sobre nosotros"
+                    className="w-full order-first py-3 px-6 text-center rounded-xl bg-gray-100 transition hover:bg-gray-200 active:bg-gray-300 focus:bg-gray-200 sm:w-max"
+                 >
+                    <span className="block text-gray-600 font-semibold">Sobre Nosotros</span>
+                 </button>
+                </div>
+              </div>
+              <div className="grid grid-cols-5 grid-rows-4 gap-4 md:w-5/12 lg:w-6/12 relative z-20">
+                <div className="col-span-2 row-span-4">
+                 <img
+                    src="https://th.bing.com/th/id/OIP.yp1w7G2fEAaLbduCQOBXawHaE7?w=800&h=533&rs=1&pid=ImgDetMain"
+                    className="rounded-full"
+                    width="640"
+                    height="960"
+                    alt="Libro 1"
+                    loading="lazy"
+                 />
+                </div>
+                <div className="col-span-2 row-span-2">
+                 <img
+                    src="https://t3.ftcdn.net/jpg/03/15/87/14/360_F_315871469_H0SM5Js5QGOGPQp319qEiR5jM7mZhfqp.jpg"
+                    className="w-full h-full object-cover object-top rounded-xl"
+                    width="640"
+                    height="640"
+                    alt="Libro 2"
+                    loading="lazy"
+                 />
+                </div>
+                <div className="col-span-3 row-span-3">
+                 <img
+                    src="https://lapiedradesisifo.com/wp-content/uploads/2016/07/student-with-an-ipad-itunes-u-100609219-orig.jpg"
+                    className="w-full h-full object-cover object-top rounded-xl"
+                    width="640"
+                    height="427"
+                    alt="Libro 3"
+                    loading="lazy"
+                 />
+                </div>
+              </div>
+            </div>
+          </Fade>
         </div>
       </div>
-    </Parallax>
-  );
-}
+    </div>
+ );
+};
 
 export default Header;

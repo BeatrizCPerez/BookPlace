@@ -12,7 +12,7 @@ const Nav = () => {
     <nav className="bg-black bg-opacity-30 p-4  fixed w-full z-20">
       <div className="container mx-auto flex items-center justify-between">
         <Link to="/" className="text-white font-bold text-xl">
-          VideoStore
+          BookStore
         </Link>
 
         <button
