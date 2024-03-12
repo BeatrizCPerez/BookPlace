@@ -2,7 +2,21 @@ import React from 'react';
 import Fade from 'react-reveal/Fade';
 
 const Header = () => {
- return (
+  const scrollToContact = () => {
+    const contactoSection = document.getElementById('contact');
+    if (contactoSection) {
+      contactoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
     <div className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
       <video
         autoPlay
@@ -20,60 +34,62 @@ const Header = () => {
             <div className="justify-center text-center gap-6 md:text-left md:flex lg:items-center lg:gap-16">
               <div className="order-last mb-6 space-y-6 md:mb-0 md:w-6/12 lg:w-6/12">
                 <h1 className="text-4xl text-gray-300 font-bold md:text-5xl relative z-20">
-                 <span className="relative inline-block">
+                  <span className="relative inline-block">
                     ¡Descubre ediciones exclusivas y lleva tus lecturas al siguiente nivel!
-                 </span>
+                  </span>
                 </h1>
                 <p className="text-lg relative z-20">
-                 Únete a nuestra comunidad de lectores y accede a las ediciones más exclusivas que harán volar tu imaginación.
+                  Únete a nuestra comunidad de lectores y accede a las ediciones más exclusivas que harán volar tu imaginación.
                 </p>
                 <div className="flex flex-row-reverse flex-wrap justify-center gap-4 md:gap-6 md:justify-end">
-                 <button
+                  <button
                     type="button"
-                    title="Comenzar a comprar"
+                    title="Reservar ahora"
                     className="w-full py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600 sm:w-max"
-                 >
+                    onClick={scrollToContact}
+                  >
                     <span className="block text-white font-semibold">Reservar ahora</span>
-                 </button>
-                 <button
+                  </button>
+                  <button
                     type="button"
-                    title="Más sobre nosotros"
-                    className="w-full order-first py-3 px-6 text-center rounded-xl bg-gray-100 transition hover:bg-gray-200 active:bg-gray-300 focus:bg-gray-200 sm:w-max"
-                 >
-                    <span className="block text-gray-600 font-semibold">Sobre Nosotros</span>
-                 </button>
+                    title="Sobre nosotr@s"
+                    className="w-full py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600 sm:w-max"
+                    onClick={scrollToAbout}
+                  >
+                    <span className="block text-white font-semibold">Sobre nosotr@s</span>
+                  </button>
                 </div>
               </div>
               <div className="grid grid-cols-5 grid-rows-4 gap-4 md:w-5/12 lg:w-6/12 relative z-20">
                 <div className="col-span-2 row-span-4">
-                 <img
+                  <img
                     src="https://th.bing.com/th/id/OIP.yp1w7G2fEAaLbduCQOBXawHaE7?w=800&h=533&rs=1&pid=ImgDetMain"
                     className="rounded-full"
                     width="640"
                     height="960"
                     alt="Libro 1"
                     loading="lazy"
-                 />
+                  />
                 </div>
                 <div className="col-span-2 row-span-2">
-                 <img
+                  <img
                     src="https://t3.ftcdn.net/jpg/03/15/87/14/360_F_315871469_H0SM5Js5QGOGPQp319qEiR5jM7mZhfqp.jpg"
                     className="w-full h-full object-cover object-top rounded-xl"
                     width="640"
                     height="640"
                     alt="Libro 2"
                     loading="lazy"
-                 />
+                  />
                 </div>
                 <div className="col-span-3 row-span-3">
-                 <img
+                  <img
                     src="https://lapiedradesisifo.com/wp-content/uploads/2016/07/student-with-an-ipad-itunes-u-100609219-orig.jpg"
                     className="w-full h-full object-cover object-top rounded-xl"
                     width="640"
                     height="427"
                     alt="Libro 3"
                     loading="lazy"
-                 />
+                  />
                 </div>
               </div>
             </div>
@@ -81,7 +97,7 @@ const Header = () => {
         </div>
       </div>
     </div>
- );
+  );
 };
 
 export default Header;

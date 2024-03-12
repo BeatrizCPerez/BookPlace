@@ -3,7 +3,7 @@ import { Fade, Zoom } from 'react-reveal';
 
 const About = () => {
   return (
-    <section className="relative bg-gray-100 py-8 md:py-12">
+    <section id='about' className="relative bg-gray-100 py-8 md:py-12">
       <div className="container mx-auto">
         {/* Línea Divisoria Superior con Ancho Completo */}
         <div className="border-t-4 border-gray-500 my-8 w-full"></div>

@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
 
 const List = () => {
-  const [movies, setMovies] = useState([]);
-  const [visibleMovies, setVisibleMovies] = useState(4);
-  const [totalMovies, setTotalMovies] = useState(0);
+  const [books, setBooks] = useState([]);
+  const [visibleBooks, setVisibleBooks] = useState(4);
+  const [totalBooks, setTotalBooks] = useState(0);
   const [error, setError] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchBooks = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/videos');
+        const response = await fetch('http://localhost:3000/api/book');
         if (!response.ok) {
           throw new Error('Error al obtener los datos');
         }
         const data = await response.json();
-        setMovies(data.data);
-        setTotalMovies(data.data.length);
+        setBooks(data.data);
+        setTotalBooks(data.data.length);
       } catch (error) {
-        console.error('Error fetching movies:', error);
+        console.error('Error fetching books:', error);
         setError('Error al obtener los datos. Por favor, intenta nuevamente más tarde.');
       }
     };
 
-    fetchMovies();
+    fetchBooks();
   }, []);
 
   const handleSeeMore = () => {
-    const newVisibleMovies = visibleMovies + 4;
-    setVisibleMovies(Math.min(newVisibleMovies, totalMovies));
+    const newVisibleBooks = visibleBooks + 4;
+    setVisibleBooks(Math.min(newVisibleBooks, totalBooks));
   };
 
   const toggleMenu = () => {
@@ -46,10 +46,10 @@ const List = () => {
         }}
       >
         <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0">
-          <h2 className="text-2xl font-bold tracking-tight text-white">Movies</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-white">Libros</h2>
           <div className="hidden sm:block">
             <a href="#" className="text-sm font-semibold text-teal-600 hover:text-cyan-500">
-              Categories
+              Categorías
             </a>
           </div>
           <div className="sm:hidden">
@@ -73,7 +73,7 @@ const List = () => {
               Login
             </a>
             <a href="#" className="block text-sm font-semibold text-teal-600 hover:text-cyan-500 mt-2">
-              Categories
+              Categorías
             </a>
           </div>
         )}
@@ -84,22 +84,22 @@ const List = () => {
           <div className="relative -mb-6 w-full overflow-x-auto pb-6">
             <ul
               role="list"
-              className="mx-4 inline-flex space-x-8 sm:mx-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:space-x-0"
+              className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
             >
-              {movies.slice(0, visibleMovies).map((movie) => (
-                <ProductCard key={movie.id} movie={movie} />
+              {books.slice(0, visibleBooks).map((book) => (
+                <BookCard key={book.id} book={book} />
               ))}
             </ul>
           </div>
         </div>
 
-        {visibleMovies < totalMovies && (
+        {visibleBooks < totalBooks && (
           <div className="mt-12 flex px-4 justify-center">
             <button
               onClick={handleSeeMore}
               className="text-sm font-semibold text-indigo-600 hover:bg-green-500 border border-indigo-600 hover:border-indigo-500 px-4 py-2 rounded-md"
             >
-              Ver mas
+              Ver más
               <span aria-hidden="true"> &darr;</span>
             </button>
           </div>
@@ -109,22 +109,22 @@ const List = () => {
   );
 };
 
-const ProductCard = ({ movie }) => {
-  const { Name, Director, Year, Img, Description } = movie;
+const BookCard = ({ book }) => {
+  const { Name, Author, Year, Img, Description } = book;
 
   return (
-    <li className="inline-flex w-64 flex-col text-center lg:w-auto bg-black text-blue-500 border-yellow-500 border overflow-hidden">
-      <div className="group relative overflow-hidden">
-        <div className="aspect-h-1 aspect-w-1 w-full">
+    <li className="bg-black text-blue-500 border-yellow-500 border overflow-hidden mb-8">
+      <div className="relative overflow-hidden">
+        <div className="aspect-h-1 aspect-w-1">
           <div className="transform transition-transform duration-300 hover:scale-110">
             <img src={Img} alt={Name} className="h-full w-full object-cover object-center" />
           </div>
         </div>
-        <div className="mt-6">
-          <h3 className="mt-1 font-semibold text-white-300">{Name}</h3>
-          <p className="mt-1 text-green-700">Director: {Director}</p>
-          <p className="mt-1 text-white">{`Año: ${Year}`}</p>
-          <p className="mt-1 text-gray-500">{Description}</p>
+        <div className="p-4">
+          <h3 className="text-lg font-semibold text-white">{Name}</h3>
+          <p className="text-green-700">Author: {Author}</p>
+          <p className="text-white">{`Año: ${Year}`}</p>
+          <p className="text-gray-500">{Description}</p>
         </div>
       </div>
     </li>

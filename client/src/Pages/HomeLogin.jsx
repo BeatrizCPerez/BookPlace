@@ -1,94 +1,118 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const HomeLogin = () => {
-  const [videos, setVideos] = useState([]);
-  const [newVideo, setNewVideo] = useState({
+ const [books, setBooks] = useState([]);
+ const [newBook, setNewBook] = useState({
     Img: '',
     Name: '',
-    Year: '',
-    Director: '',
+    Year: 0,
+    Author: '',
     Description: '',
-  });
-  const [editingVideo, setEditingVideo] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
+ });
+ const [editingBook, setEditingBook] = useState(null);
+ const [isEditing, setIsEditing] = useState(false);
 
-  useEffect(() => {
-    fetch('http://localhost:3000/api/videos')
+ useEffect(() => {
+    fetch('http://localhost:3000/api/book')
       .then(response => response.json())
-      .then(data => setVideos(data.data))
-      .catch(error => console.error('Error al obtener la lista de películas:', error));
-  }, []);
+      .then(data => setBooks(data.data))
+      .catch(error => console.error('Error al obtener la lista de libros:', error));
+ }, []);
 
-  const handleAddVideo = () => {
-    fetch('http://localhost:3000/api/videos', {
+ useEffect(() => {
+    const handleOrientationChange = () => {
+      if (window.innerWidth < 768) {
+        Swal.fire('Notificación', 'Por favor, ponga el móvil horizontal para una mejor visualización.', 'info');
+      }
+    };
+
+    window.addEventListener('resize', handleOrientationChange);
+    return () => window.removeEventListener('resize', handleOrientationChange);
+ }, []);
+
+ const handleAddBook = () => {
+    fetch('http://localhost:3000/api/book', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newVideo),
+      body: JSON.stringify(newBook),
     })
       .then(response => response.json())
       .then(data => {
-        setVideos([...videos, data.data]);
-        setNewVideo({
+        setBooks([...books, data.data]);
+        setNewBook({
           Img: '',
           Name: '',
           Year: 0,
-          Director: '',
+          Author: '',
           Description: '',
         });
+        Swal.fire('¡Éxito!', 'Libro agregado con éxito.', 'success');
       })
-      .catch(error => console.error('Error al agregar película:', error));
-  };
+      .catch(error => {
+        console.error('Error al agregar libro:', error);
+        Swal.fire('Error', 'Hubo un error al agregar el libro.', 'error');
+      });
+ };
 
-  const handleEditClick = video => {
-    setEditingVideo({ ...video });
+ const handleEditClick = book => {
+    setEditingBook({ ...book });
     setIsEditing(true);
-  };
+ };
 
-  const handleCancelEdit = () => {
-    setEditingVideo(null);
+ const handleCancelEdit = () => {
+    setEditingBook(null);
     setIsEditing(false);
-  };
+ };
 
-  const handleEditVideo = () => {
-    fetch(`http://localhost:3000/api/videos/${editingVideo.id}`, {
+ const handleEditBook = () => {
+    fetch(`http://localhost:3000/api/book/${editingBook.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(editingVideo),
+      body: JSON.stringify(editingBook),
     })
       .then(response => response.json())
       .then(data => {
-        setVideos(videos.map(video => (video.id === editingVideo.id ? data.data : video)));
-        setEditingVideo(null);
+        setBooks(books.map(book => (book.id === editingBook.id ? data.data : book)));
+        setEditingBook(null);
         setIsEditing(false);
+        Swal.fire('¡Éxito!', 'Libro editado con éxito.', 'success');
       })
-      .catch(error => console.error('Error al editar película:', error));
-  };
+      .catch(error => {
+        console.error('Error al editar libro:', error);
+        Swal.fire('Error', 'Hubo un error al editar el libro.', 'error');
+      });
+ };
 
-  const handleDeleteVideo = id => {
-    fetch(`http://localhost:3000/api/videos/${id}`, {
+ const handleDeleteBook = id => {
+    fetch(`http://localhost:3000/api/book/${id}`, {
       method: 'DELETE',
     })
       .then(response => response.json())
       .then(() => {
-        setVideos(videos.filter(video => video.id !== id));
+        setBooks(books.filter(book => book.id !== id));
+        Swal.fire('¡Éxito!', 'Libro eliminado con éxito.', 'success');
       })
-      .catch(error => console.error('Error al eliminar película:', error));
-  };
+      .catch(error => {
+        console.error('Error al eliminar libro:', error);
+        Swal.fire('Error', 'Hubo un error al eliminar el libro.', 'error');
+      });
+ };
 
-  return (
+ return (
     <div className="flex flex-col lg:flex-row">
       {/* Menú lateral (visible solo en pantallas grandes) */}
       <div className="bg-gray-800 text-white lg:w-1/7 min-h-screen p-4 hidden lg:block">
         <h1 className="text-2xl font-bold mb-4">Panel</h1>
         <button className="bg-blue-500 text-white px-4 py-2 mb-4">Dashboard</button>
         <Link to='/'>
-            <button className="bg-red-500 text-white px-4 py-2 lg:mr-4 mb-4 lg:mb-0">Salir</button>
-          </Link>
+          <button className="bg-red-500 text-white px-4 py-2 lg:mr-4 mb-4 lg:mb-0">Salir</button>
+        </Link>
       </div>
 
       {/* Contenido principal */}
@@ -102,117 +126,123 @@ const HomeLogin = () => {
         </div>
 
         <div className="mb-8 mt-12 lg:mt-20">
-          {/* Lista de películas */}
-          <h2 className="text-xl ml-4 font-bold mb-2">Lista de Películas</h2>
+          {/* Lista de libros */}
+          <h2 className="text-xl ml-4 font-bold mb-2">Lista de Libros</h2>
           <div className="overflow-x-auto">
             <table className="min-w-full border border-gray-300">
               <thead>
                 <tr>
-                  <th className="border border-gray-300 p-5">Imagen</th>
-                  <th className="border border-gray-300 p-2">Nombre</th>
-                  <th className="border border-gray-300 p-2">Año</th>
-                  <th className="border border-gray-300 p-2">Director</th>
-                  <th className="border border-gray-300 p-2">Descripción</th>
-                  <th className="border border-gray-300 p-2">Acciones</th>
+                 <th className="border border-gray-300 p-5">Imagen</th>
+                 <th className="border border-gray-300 p-2">Nombre</th>
+                 <th className="border border-gray-300 p-2">Año</th>
+                 <th className="border border-gray-300 p-2">Autor</th>
+                 <th className="border border-gray-300 p-2">Descripción</th>
+                 <th className="border border-gray-300 p-2">Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                {videos.map(video => (
-                  <tr key={video.id} className={isEditing && editingVideo.id === video.id ? 'bg-gray-200' : ''}>
+                {books.map(book => (
+                 <tr key={book.id} className={isEditing && editingBook.id === book.id ? 'bg-gray-200' : ''}>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingVideo.id === video.id ? (
+                      {isEditing && editingBook.id === book.id ? (
                         <input
                           type="text"
-                          value={editingVideo.Img}
-                          onChange={e => setEditingVideo({ ...editingVideo, Img: e.target.value })}
+                          value={editingBook.Img}
+                          onChange={e => setEditingBook({ ...editingBook, Img: e.target.value })}
                           className="w-full"
                         />
                       ) : (
-                        <img src={video.Img} alt={video.Name} className="max-w-full max-h-20" />
+                        <img src={book.Img} alt={book.Name} className="max-w-full max-h-20" />
                       )}
                     </td>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingVideo.id === video.id ? (
+                      {isEditing && editingBook.id === book.id ? (
                         <input
                           type="text"
-                          value={editingVideo.Name}
-                          onChange={e => setEditingVideo({ ...editingVideo, Name: e.target.value })}
+                          value={editingBook.Name}
+                          onChange={e => setEditingBook({ ...editingBook, Name: e.target.value })}
                           className="w-full"
                         />
                       ) : (
-                        video.Name
+                        book.Name
                       )}
                     </td>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingVideo.id === video.id ? (
+                      {isEditing && editingBook.id === book.id ? (
                         <input
                           type="number"
-                          value={editingVideo.Year}
+                          value={editingBook.Year}
                           onChange={e =>
-                            setEditingVideo({
-                              ...editingVideo,
+                            setEditingBook({
+                              ...editingBook,
                               Year: parseInt(e.target.value) || 0,
                             })
                           }
                           className="w-full"
                         />
                       ) : (
-                        video.Year
+                        book.Year
                       )}
                     </td>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingVideo.id === video.id ? (
+                      {isEditing && editingBook.id === book.id ? (
                         <input
                           type="text"
-                          value={editingVideo.Director}
+                          value={editingBook.Author}
                           onChange={e =>
-                            setEditingVideo({ ...editingVideo, Director: e.target.value })
+                            setEditingBook({ ...editingBook, Author: e.target.value })
                           }
                           className="w-full"
                         />
                       ) : (
-                        video.Director
+                        book.Author
                       )}
                     </td>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingVideo.id === video.id ? (
+                      {isEditing && editingBook.id === book.id ? (
                         <textarea
-                          value={editingVideo.Description}
+                          value={editingBook.Description}
                           onChange={e =>
-                            setEditingVideo({ ...editingVideo, Description: e.target.value })
+                            setEditingBook({ ...editingBook, Description: e.target.value })
                           }
                           className="w-full"
                         />
                       ) : (
-                        video.Description
+                        book.Description
                       )}
                     </td>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingVideo.id === video.id ? (
+                      {isEditing && editingBook.id === book.id ? (
                         <>
                           <button
-                            onClick={handleEditVideo}
+                            onClick={handleEditBook}
                             className="bg-green-500 text-white px-2 py-1 mr-2"
                           >
                             Guardar
                           </button>
                           <button
-                            onClick={handleCancelEdit}
-                            className="bg-red-500 text-white px-2 py-1"
-                          >
-                            Cancelar
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <button
-                            onClick={() => handleEditClick(video)}
+                            onClick={() => handleEditClick(book)}
                             className="bg-blue-500 text-white px-2 w-20 py-1 mr-2"
                           >
                             Editar
                           </button>
                           <button
-                            onClick={() => handleDeleteVideo(video.id)}
+                            onClick={() => handleDeleteBook(book.id)}
+                            className="bg-red-500 text-white w-20 px-2 py-1"
+                          >
+                            Eliminar
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => handleEditClick(book)}
+                            className="bg-blue-500 text-white px-2 w-20 py-1 mr-2"
+                          >
+                            Editar
+                          </button>
+                          <button
+                            onClick={() => handleDeleteBook(book.id)}
                             className="bg-red-500 text-white w-20 px-2 py-1"
                           >
                             Eliminar
@@ -220,7 +250,7 @@ const HomeLogin = () => {
                         </>
                       )}
                     </td>
-                  </tr>
+                 </tr>
                 ))}
               </tbody>
             </table>
@@ -228,8 +258,8 @@ const HomeLogin = () => {
         </div>
 
         <div>
-          {/* Agregar nueva película */}
-          <h2 className="text-xl font-bold mb-2">Agregar Nueva Película</h2>
+          {/* Agregar nuevo libro */}
+          <h2 className="text-xl font-bold mb-2">Agregar Nuevo Libro</h2>
           <div className="mb-4">
             <label className="block text-sm font-bold mb-2" htmlFor="img">
               Imagen URL:
@@ -238,8 +268,8 @@ const HomeLogin = () => {
               type="text"
               id="img"
               name="img"
-              value={newVideo.Img}
-              onChange={e => setNewVideo({ ...newVideo, Img: e.target.value })}
+              value={newBook.Img}
+              onChange={e => setNewBook({ ...newBook, Img: e.target.value })}
               className="border border-gray-300 p-2 w-full"
             />
           </div>
@@ -251,8 +281,8 @@ const HomeLogin = () => {
               type="text"
               id="name"
               name="name"
-              value={newVideo.Name}
-              onChange={e => setNewVideo({ ...newVideo, Name: e.target.value })}
+              value={newBook.Name}
+              onChange={e => setNewBook({ ...newBook, Name: e.target.value })}
               className="border border-gray-300 p-2 w-full"
             />
           </div>
@@ -264,21 +294,21 @@ const HomeLogin = () => {
               type="number"
               id="year"
               name="year"
-              value={newVideo.Year}
-              onChange={e => setNewVideo({ ...newVideo, Year: parseInt(e.target.value) || 0 })}
+              value={newBook.Year}
+              onChange={e => setNewBook({ ...newBook, Year: parseInt(e.target.value) || 0 })}
               className="border border-gray-300 p-2 w-full"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="director">
-              Director:
+            <label className="block text-sm font-bold mb-2" htmlFor="author">
+              Autor:
             </label>
             <input
               type="text"
-              id="director"
-              name="director"
-              value={newVideo.Director}
-              onChange={e => setNewVideo({ ...newVideo, Director: e.target.value })}
+              id="author"
+              name="author"
+              value={newBook.Author}
+              onChange={e => setNewBook({ ...newBook, Author: e.target.value })}
               className="border border-gray-300 p-2 w-full"
             />
           </div>
@@ -289,18 +319,18 @@ const HomeLogin = () => {
             <textarea
               id="description"
               name="description"
-              value={newVideo.Description}
-              onChange={e => setNewVideo({ ...newVideo, Description: e.target.value })}
+              value={newBook.Description}
+              onChange={e => setNewBook({ ...newBook, Description: e.target.value })}
               className="border border-gray-300 p-2 w-full"
             />
           </div>
-          <button onClick={handleAddVideo} className="bg-blue-500 text-white px-4 py-2">
-            Agregar Película
+          <button onClick={handleAddBook} className="bg-blue-500 text-white px-4 py-2">
+            Agregar Libro
           </button>
         </div>
       </div>
     </div>
-  );
+ );
 };
 
 export default HomeLogin;

@@ -20,7 +20,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="border-t-8 border-green-500 bg-gray-100 text-gray-800 body-font relative flex flex-col lg:flex-row md:flex-row">
+    <section id="contact" className="border-t-8 border-green-500 bg-gray-100 text-gray-800 body-font relative flex flex-col lg:flex-row md:flex-row">
       <div className="md:w-1/2 lg:w-1/2 bg-gray-100 flex justify-center">
         <Fade>
           <div className="bg-gray-100 p-4 text-center mt-11 text-gray-900">
