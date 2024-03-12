@@ -1,13 +1,10 @@
-// app.js
-
 import express from 'express';
 import cors from 'cors';
 import router from './router/router.js';
 import connection_db from './database/connection_db.js';
-import VideoModel from './model/VideoModel.js';
+import BookModel from './model/BookModel.js';
 import UserModel from './model/UserModel.js';
 import { PORT } from './config.js';
-import { getAllVideos, addVideo, editVideo, deleteVideo } from './controller/VideoController.js';
 
 const app = express();
 
@@ -20,11 +17,6 @@ app.use(express.json());
 // Usar el enrutador
 app.use('/api', router);
 
-// Rutas para videos
-router.get('/videos', getAllVideos);
-router.post('/videos', addVideo);
-router.put('/videos/:id', editVideo); // Ajusta la ruta según la estructura de tu API
-router.delete('/videos/:id', deleteVideo); // Ajusta la ruta según la estructura de tu API
 
 const main = async () => {
   try {
@@ -33,7 +25,7 @@ const main = async () => {
     console.log('✅✅ Successful connection to the database ✅✅');
 
     // Sincronizar modelos con la base de datos
-    await VideoModel.sync();
+    await BookModel.sync();
     await UserModel.sync();
     console.log('✅✅ Models synced with the database ✅✅');
   } catch (error) {

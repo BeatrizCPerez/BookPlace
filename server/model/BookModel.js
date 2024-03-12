@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import connection_db from "../database/connection_db.js";
 
-const VideoModel = connection_db.define('VideoClubStore', {
+const BookModel = connection_db.define('BookStore', {
   id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
@@ -20,14 +20,14 @@ const VideoModel = connection_db.define('VideoClubStore', {
     type: DataTypes.INTEGER,
     allowNull: true,
   },
-  Director: {
+  Author: {
     type: DataTypes.STRING,
     allowNull: true,
   },
   Description: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(300),
     allowNull: true,
   }
 });
 
-export default VideoModel;
+export default BookModel;
