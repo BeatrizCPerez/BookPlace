@@ -79,9 +79,9 @@ const About = () => {
         </div>
 
         {/* Línea Divisoria Superior con Ancho Completo */}
-        <div className="border-t-4 border-gray-500 my-8 w-full"></div>
+        <div className="border-t-4 border-gray-500 my-8 "></div>
 
-        <div className="w-full md:w-11/12 mx-auto">
+        <div className=" md:w-5/12 mx-auto">
           <Fade bottom>
             <div className="mt-8 text-center">
               <h4 className="text-2xl font-bold text-gray-700 mb-4">Contribuye al Medio Ambiente</h4>
@@ -92,10 +92,10 @@ const About = () => {
           </Fade>
 
           <Fade bottom>
-          <div className="flex justify-center mt-8 w-full md:w-auto py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600">
-          <Link to='./Donationpage'  className="block text-white font-semibold">
-         Donar
-          </Link>
+          <div className="flex justify-center  mt-8  md:w-auto py-3  text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600">
+          <Link to='./Donationpage' className="block w-20 text-white font-semibold">
+  Donar
+</Link>
             </div>
           </Fade>
         </div>

@@ -54,10 +54,7 @@ const Nav = () => {
 
         <div className="hidden md:flex space-x-4">
           <Link to="/Loginpage" className="text-white text-xl hover:text-green-500">
-            Iniciar sesión
-          </Link>
-          <Link to="/Registerpage" className="text-white text-xl hover:text-blue-500">
-            Registrarse
+           Administrador
           </Link>
         </div>
 
@@ -65,10 +62,7 @@ const Nav = () => {
           <div className="lg:hidden md:hidden absolute top-full left-0 right-0 bg-gray-800 bg-opacity-80 backdrop-filter backdrop-blur-lg p-4 rounded-md shadow-md">
             {/* Contenido del menú desplegable */}
             <Link to="/Loginpage" className="text-green-500 text-xl w-25 block py-2 hover:text-gray-500">
-              Iniciar sesión
-            </Link>
-            <Link to="/Registerpage" className="text-blue-600 text-xl block py-2  w-20 hover:text-green-500">
-              Registrarse
+              Administrador
             </Link>
           </div>
         )}
