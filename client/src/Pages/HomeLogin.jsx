@@ -22,15 +22,20 @@ const HomeLogin = () => {
  }, []);
 
  useEffect(() => {
-    const handleOrientationChange = () => {
-      if (window.innerWidth < 768) {
-        Swal.fire('Notificación', 'Por favor, ponga el móvil horizontal para una mejor visualización.', 'info');
-      }
-    };
+  const handleOrientationChange = () => {
+    if (window.innerWidth < 768 && window.innerHeight > window.innerWidth) {
+      // Mostrar la notificación solo en modo retrato
+      Swal.fire('Notificación', 'Por favor, ponga el móvil horizontal para una mejor visualización.', 'info');
+    }
+  };
 
-    window.addEventListener('resize', handleOrientationChange);
-    return () => window.removeEventListener('resize', handleOrientationChange);
- }, []);
+  // Verificar la orientación al cargar la página
+  handleOrientationChange();
+
+  window.addEventListener('resize', handleOrientationChange);
+  return () => window.removeEventListener('resize', handleOrientationChange);
+}, []);
+ 
 
  const handleAddBook = () => {
     fetch('http://localhost:3000/api/book', {
