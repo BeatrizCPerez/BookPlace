@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation} from 'react-router-dom';
 import Swal from 'sweetalert2';  // Importa SweetAlert
 import Nav from './Nav';
 import Footer from './Footer';
+
+
+// Nuevo componente para manejar el desplazamiento al cambiar de ruta
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -45,6 +57,7 @@ const Login = () => {
 
   return (
     <>
+    <ScrollToTop />
        <section className="relative">
         <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0">
           <source src="../src/assets/videoLogin.mp4" type="video/mp4" />

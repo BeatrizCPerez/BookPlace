@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import LoginPage from "../Pages/Loginpage";
 import HomeLogin from "../Pages/HomeLogin";
 import Registerpage from "../Pages/Registerpage";
+import Donationpage from "../Pages/Donationpage";
 
 const router = (
   <Router>
@@ -13,6 +14,7 @@ const router = (
       <Route path="/HomeLogin" element={<HomeLogin />} />
       <Route path="/Registerpage" element={<Registerpage />} />
       <Route path="/HomeLogin" element={<HomeLogin />} />
+      <Route path="/Donationpage" element={<Donationpage />} />
     </Routes>
   </Router>
 );

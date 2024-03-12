@@ -1,5 +1,7 @@
 import React from 'react';
 import { Fade, Zoom } from 'react-reveal';
+import { Link } from 'react-router-dom';
+
 
 const About = () => {
   return (
@@ -90,14 +92,10 @@ const About = () => {
           </Fade>
 
           <Fade bottom>
-            <div className="flex justify-center mt-8">
-              <button
-                type="button"
-                title="Programar Recogida Gratuita"
-                className="w-full md:w-auto py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600"
-              >
-                <span className="block text-white font-semibold">Programar Recogida Gratuita</span>
-              </button>
+          <div className="flex justify-center mt-8 w-full md:w-auto py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600">
+          <Link to='./Donationpage'  className="block text-white font-semibold">
+         Donar
+          </Link>
             </div>
           </Fade>
         </div>

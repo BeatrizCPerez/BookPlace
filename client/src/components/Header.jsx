@@ -1,5 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import {useNavigate, useLocation} from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
+
+
+// Nuevo componente para manejar el desplazamiento al cambiar de ruta
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+const scrollToAbout = () => {
+  const aboutSection = document.getElementById('about');
+  if (aboutSection) {
+    aboutSection.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 
 const Header = () => {
   const scrollToContact = () => {
@@ -9,15 +29,9 @@ const Header = () => {
     }
   };
 
-  const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
+    <div id='header' className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
+      <ScrollToTop />
       <video
         autoPlay
         loop

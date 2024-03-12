@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useLocation } from 'react-router-dom';
+
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const HomeLogin = () => {
  const [books, setBooks] = useState([]);
@@ -109,8 +121,10 @@ const HomeLogin = () => {
       });
  };
 
+ 
  return (
     <div className="flex flex-col lg:flex-row">
+      <ScrollToTop />
       {/* Menú lateral (visible solo en pantallas grandes) */}
       <div className="bg-gray-800 text-white lg:w-1/7 min-h-screen p-4 hidden lg:block">
         <h1 className="text-2xl font-bold mb-4">Panel</h1>
@@ -334,6 +348,11 @@ const HomeLogin = () => {
           </button>
         </div>
       </div>
+    
+<Link to="#" className="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+  Subir
+</Link>
+
     </div>
  );
 };

@@ -1,7 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';  // Importa SweetAlert
 import Nav from './Nav';
 import Footer from './Footer';
+import { useLocation } from 'react-router-dom';
+
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -39,6 +51,7 @@ const Register = () => {
   return (
     <>
       <section className="relative">
+        <ScrollToTop />
         <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0">
           <source src="../src/assets/videoRegister.mp4" type="video/mp4" />
           Tu navegador no admite la etiqueta de video.
