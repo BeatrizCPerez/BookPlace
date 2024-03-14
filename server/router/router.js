@@ -1,4 +1,4 @@
-// router.js
+
 
 import express from 'express';
 import nodemailer from 'nodemailer';
@@ -72,6 +72,49 @@ router.post('/enviar-formulario', (req, res) => {
     } else {
       console.log('Correo electrónico de confirmación enviado:', info.response);
       res.status(200).send('Correo electrónico de confirmación enviado');
+    }
+  });
+});
+
+
+
+// Ruta para manejar el envío del formulario de contacto
+router.post('/enviar-formulario-contacto', (req, res) => {
+  const formData = req.body;
+  
+  const mailOptions = {
+    from: 'beatrizcustodio262@gmail.com',
+    to: formData.email,
+    cc: 'beatrizcustodio262@yahoo.es', // Cambia a la dirección de correo electrónico donde deseas recibir los mensajes de contacto
+    subject: '¡Gracias por tu mensaje!',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #007bff;">¡Gracias por tu mensaje!</h2>
+        <p style="font-size: 16px;">Hola ${formData.name},</p>
+        <p style="font-size: 16px;">Hemos recibido tu solicitud y estamos encantados de ayudarte. En breve nos pondremos en contacto contigo.</p>
+        <p style="font-size: 16px;">A continuación, te proporcionamos los detalles de tu mensaje:</p>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><strong>Nombre:</strong> ${formData.name}</li>
+          <li><strong>Teléfono:</strong> ${formData.telefono}</li>
+          <li><strong>Email:</strong> ${formData.email}</li>
+          <li><strong>¿Eres socio?:</strong> ${formData.eresSocio}</li>
+        </ul>
+        <p style="font-size: 16px;">¡Muchas gracias por confiar en nosotros!</p>
+        <p style="font-size: 16px;">En breve nos pondremos en contacto contigo para atender tu solicitud.</p>
+        <p style="font-size: 16px;">Saludos cordiales,</p>
+        <p style="font-size: 16px;">El equipo de BookStore</p>
+      </div>
+    `
+  };
+
+  // Envía el correo electrónico
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error al enviar el correo electrónico de contacto:', error);
+      res.status(500).send('Error al enviar el correo electrónico de contacto');
+    } else {
+      console.log('Correo electrónico de contacto enviado:', info.response);
+      res.status(200).send('Correo electrónico de contacto enviado');
     }
   });
 });
