@@ -1,22 +1,47 @@
 import React, { useState } from 'react';
 import { Fade } from 'react-reveal';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Contact = () => {
-  const [isSocio, setIsSocio] = useState(false);
-  const [isHacerseSocio, setIsHacerseSocio] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    telefono: '',
+    email: '',
+    eresSocio: '',
+    libroDeseado: '',
+    fechaAlquiler: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSocioChange = (e) => {
-    setIsSocio(e.target.value === 'si');
-    setIsHacerseSocio(false);
-  };
-
-  const handleHacerseSocioChange = (e) => {
-    setIsHacerseSocio(e.target.value === 'si');
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
   };
 
   const handleSubmit = () => {
-    Swal.fire('¡Solicitud enviada!', 'Su solicitud ha sido enviada correctamente.', 'success');
+    setIsSubmitting(true);
+    axios.post('http://localhost:3000/api/enviar-formulario-contacto', formData)
+      .then(() => {
+        setIsSubmitting(false);
+        setFormData({
+          name: '',
+          telefono: '',
+          email: '',
+          eresSocio: '',
+          libroDeseado: '',
+          fechaAlquiler: '',
+        });
+        Swal.fire('¡Mensaje enviado!', 'Tu mensaje ha sido enviado correctamente.', 'success');
+      })
+      .catch((error) => {
+        console.error('Error al enviar el formulario de contacto:', error);
+        setIsSubmitting(false);
+        Swal.fire('Error', 'Hubo un error al enviar el formulario de contacto. Por favor, inténtalo de nuevo más tarde.', 'error');
+      });
   };
 
   return (
@@ -63,14 +88,17 @@ const Contact = () => {
 
         <div className="relative mb-2">
           <label htmlFor="name" className="leading-7 text-xs text-gray-300">
-            Nombre
+            Nombre <span className="text-red-500">*</span>
           </label>
           <input
-            type="Nombre"
+            type="text"
             id="name"
             name="name"
             autoComplete="name"
+            value={formData.name}
+            required // Hacer el campo obligatorio
             className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+            onChange={handleChange}
           />
         </div>
         <div className="relative mb-2">
@@ -78,23 +106,28 @@ const Contact = () => {
             Número de teléfono
           </label>
           <input
-            type="number"
+            type="text" // Permitir cualquier entrada de texto
             id="telefono"
             name="telefono"
             autoComplete="tel"
+            value={formData.telefono}
             className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+            onChange={handleChange}
           />
         </div>
         <div className="relative mb-2">
           <label htmlFor="email" className="leading-7 text-xs text-gray-300">
-            Email
+            Email <span className="text-red-500">*</span>
           </label>
           <input
             type="email"
             id="email"
             name="email"
             autoComplete="email"
+            value={formData.email}
+            required // Hacer el campo obligatorio
             className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+            onChange={handleChange}
           />
         </div>
         <div className="relative mb-2">
@@ -105,15 +138,15 @@ const Contact = () => {
             id="eresSocio"
             name="eresSocio"
             className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
-            onChange={handleSocioChange}
+            onChange={handleChange}
           >
             <option value="si">Sí</option>
             <option value="no">No</option>
           </select>
         </div>
 
-        {isSocio && (
-          <Fade>
+        {formData.eresSocio === 'si' && (
+          <>
             <div className="relative mb-2">
               <label htmlFor="numeroSocio" className="leading-7 text-xs text-gray-300">
                 Número de socio
@@ -123,13 +156,10 @@ const Contact = () => {
                 id="numeroSocio"
                 name="numeroSocio"
                 className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+                onChange={handleChange}
               />
             </div>
-          </Fade>
-        )}
 
-        {isSocio && (
-          <Fade>
             <div className="relative mb-2">
               <label htmlFor="fechaAlquiler" className="leading-7 text-xs text-gray-300">
                 Fecha de alquiler
@@ -138,10 +168,13 @@ const Contact = () => {
                 type="date"
                 id="fechaAlquiler"
                 name="fechaAlquiler"
+                min={new Date().toISOString().split('T')[0]} // No permitir fechas anteriores a la actual
+                value={formData.fechaAlquiler}
                 className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+                onChange={handleChange}
               />
             </div>
-          </Fade>
+          </>
         )}
 
         <div className="relative mb-2">
@@ -154,15 +187,17 @@ const Contact = () => {
             id="libroDeseado"
             name="libroDeseado"
             className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+            onChange={handleChange}
           />
         </div>
 
         <Fade>
           <button
-            className="text-white bg-green-500 border-0 py-1 px-4 focus:outline-none hover:bg-green-600 rounded text-sm"
+            className={`text-white bg-green-500 border-0 py-1 px-4 focus:outline-none hover:bg-green-600 rounded text-sm ${isSubmitting ? 'cursor-not-allowed opacity-50' : ''}`}
             onClick={handleSubmit}
+            disabled={isSubmitting}
           >
-            Enviar
+            {isSubmitting ? 'Enviando...' : 'Enviar'}
           </button>
         </Fade>
 
