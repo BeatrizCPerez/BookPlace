@@ -58,7 +58,7 @@ const Register = () => {
         </video>
         <Nav />
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-6">
-          <div className="relative flex mt-[100px] flex-col min-w-0 break-words w-full mb-6 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
+          <div className="relative flex mt-[40px] flex-col min-w-0 break-words w-full mb-6 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3 z-0">
                 <h6 className="text-white text-sm font-bold">Crea una cuenta</h6>
@@ -71,26 +71,26 @@ const Register = () => {
               </div>
               <form>
                 <div className="relative w-full mb-3">
-                  <label className="block uppercase text-white text-xs font-bold mb-2" htmlFor="firstName">First Name</label>
+                  <label className="block uppercase text-white text-xs font-bold mb-2" htmlFor="firstName">Nombre</label>
                   <input
                     type="text"
                     id="firstName"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="First Name"
+                    placeholder="Nombre"
                     autoComplete="given-name"
                   />
                 </div>
                 <div className="relative w-full mb-3">
-                  <label className="block uppercase text-white text-xs font-bold mb-2" htmlFor="lastName">Last Name</label>
+                  <label className="block uppercase text-white text-xs font-bold mb-2" htmlFor="lastName">Apellidos</label>
                   <input
                     type="text"
                     id="lastName"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Last Name"
+                    placeholder="Apellidos"
                     autoComplete="family-name"
                   />
                 </div>
@@ -107,14 +107,14 @@ const Register = () => {
                   />
                 </div>
                 <div className="relative w-full mb-3">
-                  <label className="block uppercase text-white text-xs font-bold mb-2" htmlFor="password">Password</label>
+                  <label className="block uppercase text-white text-xs font-bold mb-2" htmlFor="password">Contraseña</label>
                   <input
-                    type="password"
+                    type="text"
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Password"
+                    placeholder="Contraseña"
                     autoComplete="new-password"
                   />
                 </div>

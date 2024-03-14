@@ -41,7 +41,7 @@ const Header = () => {
       >
         <source src="../src/assets/video.mp4" type="video/mp4" />
       </video>
-      <div className="py-12 md:py-16 lg:py-20 bg-header relative" style={{ zIndex: 1 }}>
+      <div className="py-12 md:py-16 lg:py-20 relative" style={{ zIndex: 1 }}>
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
         <div className="container m-auto px-6 space-y-8 text-white md:px-12 lg:px-20 relative z-10">
           <Fade bottom cascade>
