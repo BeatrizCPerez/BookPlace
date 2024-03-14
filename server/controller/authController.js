@@ -4,38 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UserModel from '../model/UserModel.js';
 
-export const handleAuth = async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    console.log('Intentando autenticar usuario:', email);
-    
-    const user = await UserModel.findOne({ where: { email } });
-
-    if (!user) {
-      // Si el usuario no existe, procede con el registro
-      console.log('Usuario no encontrado. Iniciando registro.');
-      return registerUser(req, res);
-    }
-
-    // Si el usuario existe, intenta realizar el inicio de sesión
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
-    if (!passwordMatch) {
-      console.log('Contraseña incorrecta. Fallo en la autenticación.');
-      return res.status(401).json({ success: false, message: 'Credenciales incorrectas' });
-    }
-
-    const token = jwt.sign({ userId: user.id }, 'secreto', { expiresIn: '1h' });
-
-    console.log('Autenticación exitosa. Generando token.');
-    res.status(200).json({ success: true, token });
-  } catch (error) {
-    console.error('Error al manejar autenticación:', error);
-    res.status(500).json({ success: false, error: 'Error interno del servidor' });
-  }
-};
-
+// Función para manejar el registro de nuevos usuarios
 export const registerUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -66,6 +35,38 @@ export const registerUser = async (req, res) => {
   }
 };
 
+// Función para manejar el inicio de sesión
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    console.log('Intentando iniciar sesión:', email);
+    
+    const user = await UserModel.findOne({ where: { email } });
+
+    if (!user) {
+      console.log('Usuario no encontrado.');
+      return res.status(401).json({ success: false, message: 'Credenciales incorrectas' });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      console.log('Contraseña incorrecta. Fallo en la autenticación.');
+      return res.status(401).json({ success: false, message: 'Credenciales incorrectas' });
+    }
+
+    console.log('Inicio de sesión exitoso.');
+    // Generar el token de autenticación si las credenciales son válidas
+    const token = jwt.sign({ userId: user.id }, 'secreto', { expiresIn: '1h' });
+    res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', token });
+  } catch (error) {
+    console.error('Error al manejar inicio de sesión:', error);
+    res.status(500).json({ success: false, error: 'Error interno del servidor' });
+  }
+};
+
+// Función para obtener la lista de usuarios
 export const getUsers = async (req, res) => {
   try {
     console.log('Obteniendo lista de usuarios.');
