@@ -120,15 +120,16 @@ const Contact = () => {
             Email <span className="text-red-500">*</span>
           </label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            autoComplete="email"
-            value={formData.email}
-            required // Hacer el campo obligatorio
-            className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
-            onChange={handleChange}
-          />
+  type="email"
+  id="email"
+  name="email"
+  autoComplete="email"
+  value={formData.email}
+  required
+  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" // Expresión regular para validar el formato de correo electrónico
+  className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
+  onChange={handleChange}
+/>
         </div>
         <div className="relative mb-2">
           <label htmlFor="eresSocio" className="leading-7 text-xs text-gray-300">
