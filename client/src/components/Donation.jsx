@@ -93,11 +93,14 @@ const Donation = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="grid grid-cols-1 gap-4 text-white">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-white">Nombre</label>
+                <label htmlFor="name" className="leading-7 text-xs text-gray-300">
+            Nombre <span className="text-red-500">*</span>
+          </label>
                   <input
                     type="text"
                     id="name"
                     placeholder="Nombre"
+                    required 
                     {...register('name', { required: true })}
                     className="mt-1 p-2 w-full border rounded-md bg-transparent focus:outline-none focus:border-green-500 text-white"
                   />
@@ -117,23 +120,29 @@ const Donation = () => {
                   <input
                     type="tel"
                     id="phone"
+                    required 
                     placeholder="Teléfono"
                     {...register('phone', { required: true })}
                     className="mt-1 p-2 w-full border rounded-md bg-transparent focus:outline-none focus:border-green-500 text-white"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white">Correo Electrónico</label>
+                <label htmlFor="email" className="leading-7 text-xs text-gray-300">
+            Email <span className="text-red-500">*</span>
+          </label>
                   <input
                     type="email"
                     id="email"
+                    required 
                     placeholder="Email"
-                    {...register('email', { required: true })}
+                    {...register('email', { required: true , pattern: /^\S+@\S+$/i})}
                     className="mt-1 p-2 w-full border rounded-md bg-transparent focus:outline-none focus:border-green-500 text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-white">Opciones de Recogida</label>
+                <label htmlFor="email" className="leading-7 text-xs text-gray-300">
+            Opción de entrega <span className="text-red-500">*</span>
+          </label>
                   <select
                     {...register('recogida')}
                     className="mt-1 p-2 w-full border rounded-md bg-transparent focus:outline-none focus:border-green-500 text-blue-700"
@@ -151,6 +160,7 @@ const Donation = () => {
                         type="text"
                         id="direccion"
                         placeholder="Dirección"
+                        required 
                         {...register('direccion', { required: true })}
                         className="mt-1 p-2 w-full border rounded-md bg-transparent focus:outline-none focus:border-blue-500 text-white"
                       />

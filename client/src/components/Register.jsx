@@ -25,7 +25,7 @@ const Register = () => {
     try {
       console.log('Datos del formulario:', { firstName, lastName, email, password });
 
-      const response = await fetch('http://localhost:3000/api/users', {
+      const response = await fetch('http://localhost:3000/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
