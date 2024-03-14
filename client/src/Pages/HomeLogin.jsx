@@ -19,7 +19,7 @@ const HomeLogin = () => {
  const [newBook, setNewBook] = useState({
     Img: '',
     Name: '',
-    Year: 0,
+    Year: '',
     Author: '',
     Description: '',
  });
@@ -354,10 +354,6 @@ const HomeLogin = () => {
           </button>
         </div>
       </div>
-    
-<Link to="#" className="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-  Subir
-</Link>
 
     </div>
  );

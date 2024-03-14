@@ -40,6 +40,14 @@ const Donation = () => {
           title: '¡Gracias por tu donación!',
           text: 'Hemos recibido tu información de donación. ¡Te contactaremos pronto!',
         });
+        // Restablecer los valores del formulario
+        setValue('name', '');
+        setValue('lastName', '');
+        setValue('phone', '');
+        setValue('email', '');
+        setValue('recogida', 'tienda');
+        setValue('direccion', '');
+        setValue('fechaRecogida', '');
       })
       .catch((error) => {
         setIsSubmitting(false);
@@ -93,9 +101,9 @@ const Donation = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="grid grid-cols-1 gap-4 text-white">
                 <div>
-                <label htmlFor="name" className="leading-7 text-xs text-gray-300">
-            Nombre <span className="text-red-500">*</span>
-          </label>
+                  <label htmlFor="name" className="leading-7 text-xs text-gray-300">
+                    Nombre <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     id="name"
@@ -127,9 +135,9 @@ const Donation = () => {
                   />
                 </div>
                 <div>
-                <label htmlFor="email" className="leading-7 text-xs text-gray-300">
-            Email <span className="text-red-500">*</span>
-          </label>
+                  <label htmlFor="email" className="leading-7 text-xs text-gray-300">
+                    Email <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -140,9 +148,9 @@ const Donation = () => {
                   />
                 </div>
                 <div>
-                <label htmlFor="email" className="leading-7 text-xs text-gray-300">
-            Opción de entrega <span className="text-red-500">*</span>
-          </label>
+                  <label htmlFor="email" className="leading-7 text-xs text-gray-300">
+                    Opción de entrega <span className="text-red-500">*</span>
+                  </label>
                   <select
                     {...register('recogida')}
                     className="mt-1 p-2 w-full border rounded-md bg-transparent focus:outline-none focus:border-green-500 text-blue-700"
@@ -171,7 +179,8 @@ const Donation = () => {
                         type="date"
                         id="fechaRecogida"
                         {...register('fechaRecogida', { required: true })}
-                        className="mt-1 p-2 w-full border rounded-md bg-transparent focus:outline-none focus:border-blue-500 text-white"
+                        className="mt-1 p-2 w-full border rounded-md bg-transparent  focus:outline-none focus:border-blue-500 text-white"
+                        min={new Date().toISOString().split('T')[0]} // No permitir fechas anteriores a la actual
                         onFocus={(e) => e.target.type = 'date'}
                         onBlur={(e) => e.target.type = 'text'}
                       />
@@ -204,6 +213,3 @@ const Donation = () => {
 };
 
 export default Donation;
-
-
-
