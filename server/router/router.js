@@ -11,7 +11,7 @@ import {
   editBook,
   deleteBook,
 } from '../controller/BookController.js';
-import { registerUser, getUsers } from '../controller/authController.js';
+import { registerUser, getUsers, loginUser } from '../controller/authController.js';
 
 const router = express.Router();
 
@@ -120,7 +120,10 @@ router.post('/enviar-formulario-contacto', (req, res) => {
 });
 
 // Rutas existentes para la autenticación de usuarios
-router.post('/users', registerUser);
+// Rutas para la autenticación de usuarios
+router.post('/users/register', registerUser);
+router.post('/users/login', loginUser);
 router.get('/users', getUsers);
+
 
 export default router;
