@@ -53,10 +53,9 @@ router.post('/enviar-formulario', (req, res) => {
           <li><strong>Nombre:</strong> ${formData.name} ${formData.lastName}</li>
           <li><strong>Número de Teléfono:</strong> ${formData.phone}</li>
           <li><strong>Correo Electrónico:</strong> ${formData.email}</li>
-          <li><strong>Libro:</strong> ${formData.book}</li>
           <li><strong>Opción de Recogida:</strong> ${formData.recogida}</li>
           ${formData.recogida === 'casa' ? `<li><strong>Dirección de Recogida:</strong> ${formData.direccion}</li>` : ''}
-          ${formData.recogida === 'casa' ? `<li><strong>Fecha de Recogida:</strong> ${formData.fechaRecogida}</li>` : ''}
+          ${formData.recogida === 'casa' ? `<li><strong>Fecha de BookStore:</strong> ${formData.fechaRecogida}</li>` : ''}
         </ul>
         <p>¡Gracias nuevamente por tu generosidad!</p>
         <p>Saludos,<br/>Tu Equipo de Donaciones</p>
