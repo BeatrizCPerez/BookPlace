@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useLocation } from 'react-router-dom';
 
-
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -15,41 +14,40 @@ const ScrollToTop = () => {
 };
 
 const HomeLogin = () => {
- const [books, setBooks] = useState([]);
- const [newBook, setNewBook] = useState({
+  const [books, setBooks] = useState([]);
+  const [newBook, setNewBook] = useState({
     Img: '',
     Name: '',
     Year: '',
     Author: '',
     Description: '',
- });
- const [editingBook, setEditingBook] = useState(null);
- const [isEditing, setIsEditing] = useState(false);
+  });
+  const [editingBook, setEditingBook] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
- useEffect(() => {
+  useEffect(() => {
     fetch('http://localhost:3000/api/book')
       .then(response => response.json())
       .then(data => setBooks(data.data))
       .catch(error => console.error('Error al obtener la lista de libros:', error));
- }, []);
+  }, []);
 
- useEffect(() => {
-  const handleOrientationChange = () => {
-    if (window.innerWidth < 768 && window.innerHeight > window.innerWidth) {
-      // Mostrar la notificación solo en modo retrato
-      Swal.fire('Notificación', 'Por favor, ponga el móvil horizontal para una mejor visualización.', 'info');
-    }
-  };
+  useEffect(() => {
+    const handleOrientationChange = () => {
+      if (window.innerWidth < 768 && window.innerHeight > window.innerWidth) {
+        // Mostrar la notificación solo en modo retrato
+        Swal.fire('Notificación', 'Por favor, ponga el móvil horizontal para una mejor visualización.', 'info');
+      }
+    };
 
-  // Verificar la orientación al cargar la página
-  handleOrientationChange();
+    // Verificar la orientación al cargar la página
+    handleOrientationChange();
 
-  window.addEventListener('resize', handleOrientationChange);
-  return () => window.removeEventListener('resize', handleOrientationChange);
-}, []);
- 
+    window.addEventListener('resize', handleOrientationChange);
+    return () => window.removeEventListener('resize', handleOrientationChange);
+  }, []);
 
- const handleAddBook = () => {
+  const handleAddBook = () => {
     fetch('http://localhost:3000/api/book', {
       method: 'POST',
       headers: {
@@ -73,20 +71,15 @@ const HomeLogin = () => {
         console.error('Error al agregar libro:', error);
         Swal.fire('Error', 'Hubo un error al agregar el libro.', 'error');
       });
- };
+  };
 
- const handleEditClick = book => {
+  const handleEditClick = book => {
     setEditingBook({ ...book });
     setIsEditing(true);
- };
+  };
 
- const handleCancelEdit = () => {
-    setEditingBook(null);
-    setIsEditing(false);
- };
-
- const handleEditBook = () => {
-    fetch(`http://localhost:3000/api/book/${editingBook.id}`, {
+  const handleEditBook = () => {
+    fetch(`http://localhost:3000/api/book/${editingBook._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -95,7 +88,7 @@ const HomeLogin = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setBooks(books.map(book => (book.id === editingBook.id ? data.data : book)));
+        setBooks(books.map(book => (book._id === editingBook._id ? data.data : book)));
         setEditingBook(null);
         setIsEditing(false);
         Swal.fire('¡Éxito!', 'Libro editado con éxito.', 'success');
@@ -104,25 +97,24 @@ const HomeLogin = () => {
         console.error('Error al editar libro:', error);
         Swal.fire('Error', 'Hubo un error al editar el libro.', 'error');
       });
- };
+  };
 
- const handleDeleteBook = id => {
+  const handleDeleteBook = id => {
     fetch(`http://localhost:3000/api/book/${id}`, {
       method: 'DELETE',
     })
       .then(response => response.json())
       .then(() => {
-        setBooks(books.filter(book => book.id !== id));
+        setBooks(books.filter(book => book._id !== id));
         Swal.fire('¡Éxito!', 'Libro eliminado con éxito.', 'success');
       })
       .catch(error => {
         console.error('Error al eliminar libro:', error);
         Swal.fire('Error', 'Hubo un error al eliminar el libro.', 'error');
       });
- };
+  };
 
- 
- return (
+  return (
     <div className="flex flex-col lg:flex-row">
       <ScrollToTop />
       {/* Menú lateral (visible solo en pantallas grandes) */}
@@ -130,14 +122,13 @@ const HomeLogin = () => {
         <h1 className="text-2xl font-bold mb-4">Panel</h1>
         <button className="bg-blue-500 text-white px-4 py-2 mb-4">Dashboard</button>
         <div>
-        <Link to='/Registerpage'>
-          <button className="bg-green-500  text-white w-30 px-4 py-2 lg:mr-4 mb-4 lg:mb-0">Registro</button>
-        </Link>
+          <Link to='/Registerpage'>
+            <button className="bg-green-500 text-white w-30 px-4 py-2 lg:mr-4 mb-4 lg:mb-0">Registro</button>
+          </Link>
         </div>
         <Link to='/'>
           <button className="bg-red-500 text-white mt-3 px-4 py-2 w-30 lg:mr-4 mb-4 lg:mb-0">Salir</button>
         </Link>
-       
       </div>
 
       {/* Contenido principal */}
@@ -157,19 +148,19 @@ const HomeLogin = () => {
             <table className="min-w-full border border-gray-300">
               <thead>
                 <tr>
-                 <th className="border border-gray-300 p-5">Imagen</th>
-                 <th className="border border-gray-300 p-2">Nombre</th>
-                 <th className="border border-gray-300 p-2">Año</th>
-                 <th className="border border-gray-300 p-2">Autor</th>
-                 <th className="border border-gray-300 p-2">Descripción</th>
-                 <th className="border border-gray-300 p-2">Acciones</th>
+                  <th className="border border-gray-300 p-5">Imagen</th>
+                  <th className="border border-gray-300 p-2">Nombre</th>
+                  <th className="border border-gray-300 p-2">Año</th>
+                  <th className="border border-gray-300 p-2">Autor</th>
+                  <th className="border border-gray-300 p-2">Descripción</th>
+                  <th className="border border-gray-300 p-2">Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 {books.map(book => (
-                 <tr key={book.id} className={isEditing && editingBook.id === book.id ? 'bg-gray-200' : ''}>
+                  <tr key={book._id} className={isEditing && editingBook._id === book._id ? 'bg-gray-200' : ''}>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingBook.id === book.id ? (
+                      {isEditing && editingBook._id === book._id ? (
                         <input
                           type="text"
                           value={editingBook.Img}
@@ -181,7 +172,7 @@ const HomeLogin = () => {
                       )}
                     </td>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingBook.id === book.id ? (
+                      {isEditing && editingBook._id === book._id ? (
                         <input
                           type="text"
                           value={editingBook.Name}
@@ -193,7 +184,7 @@ const HomeLogin = () => {
                       )}
                     </td>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingBook.id === book.id ? (
+                      {isEditing && editingBook._id === book._id ? (
                         <input
                           type="number"
                           value={editingBook.Year}
@@ -210,13 +201,11 @@ const HomeLogin = () => {
                       )}
                     </td>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingBook.id === book.id ? (
+                      {isEditing && editingBook._id === book._id ? (
                         <input
                           type="text"
                           value={editingBook.Author}
-                          onChange={e =>
-                            setEditingBook({ ...editingBook, Author: e.target.value })
-                          }
+                          onChange={e => setEditingBook({ ...editingBook, Author: e.target.value })}
                           className="w-full"
                         />
                       ) : (
@@ -224,7 +213,7 @@ const HomeLogin = () => {
                       )}
                     </td>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingBook.id === book.id ? (
+                      {isEditing && editingBook._id === book._id ? (
                         <textarea
                           value={editingBook.Description}
                           onChange={e =>
@@ -237,7 +226,7 @@ const HomeLogin = () => {
                       )}
                     </td>
                     <td className="border border-gray-300 p-2">
-                      {isEditing && editingBook.id === book.id ? (
+                      {isEditing && editingBook._id === book._id ? (
                         <>
                           <button
                             onClick={handleEditBook}
@@ -252,7 +241,7 @@ const HomeLogin = () => {
                             Editar
                           </button>
                           <button
-                            onClick={() => handleDeleteBook(book.id)}
+                            onClick={() => handleDeleteBook(book._id)}
                             className="bg-red-500 text-white w-20 px-2 py-1"
                           >
                             Eliminar
@@ -267,7 +256,7 @@ const HomeLogin = () => {
                             Editar
                           </button>
                           <button
-                            onClick={() => handleDeleteBook(book.id)}
+                            onClick={() => handleDeleteBook(book._id)}
                             className="bg-red-500 text-white w-20 px-2 py-1"
                           >
                             Eliminar
@@ -275,7 +264,7 @@ const HomeLogin = () => {
                         </>
                       )}
                     </td>
-                 </tr>
+                  </tr>
                 ))}
               </tbody>
             </table>
@@ -356,7 +345,7 @@ const HomeLogin = () => {
       </div>
 
     </div>
- );
+  );
 };
 
 export default HomeLogin;
