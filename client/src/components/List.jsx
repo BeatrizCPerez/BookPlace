@@ -10,7 +10,7 @@ const List = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/book');
+        const response = await fetch('https://back-iax6.onrender.com/api/book');
         if (!response.ok) {
           throw new Error('Error al obtener los datos');
         }

@@ -24,7 +24,7 @@ const Contact = () => {
 
   const handleSubmit = () => {
     setIsSubmitting(true);
-    axios.post('http://localhost:3000/api/enviar-formulario-contacto', formData)
+    axios.post('https://back-iax6.onrender.com/api/enviar-formulario-contacto', formData)
       .then(() => {
         setIsSubmitting(false);
         setFormData({

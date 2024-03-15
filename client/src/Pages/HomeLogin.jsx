@@ -26,7 +26,7 @@ const HomeLogin = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/book')
+    fetch('https://back-iax6.onrender.com/api/book')
       .then(response => response.json())
       .then(data => setBooks(data.data))
       .catch(error => console.error('Error al obtener la lista de libros:', error));
@@ -48,7 +48,7 @@ const HomeLogin = () => {
   }, []);
 
   const handleAddBook = () => {
-    fetch('https://back-iax6.onrender.com/', {
+    fetch('https://back-iax6.onrender.com/api/book', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const HomeLogin = () => {
   };
 
   const handleEditBook = () => {
-    fetch(`http://localhost:3000/api/book/${editingBook._id}`, {
+    fetch(`https://back-iax6.onrender.com/api/book/${editingBook._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const HomeLogin = () => {
   };
 
   const handleDeleteBook = id => {
-    fetch(`http://localhost:3000/api/book/${id}`, {
+    fetch(`https://back-iax6.onrender.com/api/book/${id}`, {
       method: 'DELETE',
     })
       .then(response => response.json())

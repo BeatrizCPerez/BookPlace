@@ -25,7 +25,7 @@ const Register = () => {
     try {
       console.log('Datos del formulario:', { firstName, lastName, email, password });
 
-      const response = await fetch('http://localhost:3000/api/users/register', {
+      const response = await fetch('https://back-iax6.onrender.com/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

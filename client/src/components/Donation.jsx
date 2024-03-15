@@ -32,7 +32,7 @@ const Donation = () => {
 
   const onSubmit = (data) => {
     setIsSubmitting(true);
-    axios.post('http://localhost:3000/api/enviar-formulario', data)
+    axios.post('https://back-iax6.onrender.com/api/enviar-formulario', data)
       .then(() => {
         setIsSubmitting(false);
         Swal.fire({
