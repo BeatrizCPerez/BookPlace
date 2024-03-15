@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize";
-import {DB_NAME, DB_USER, DB_PASS} from "../config.js"
+import {DB_NAME, DB_USER, DB_PASS, DB_HOST} from "../config.js"
 
 
 const connection_db = new Sequelize(DB_NAME, DB_USER, DB_PASS,{
-    host: 'localhost',
+    host: DB_HOST,
     dialect: 'mysql'
 })
 
