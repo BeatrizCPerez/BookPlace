@@ -99,8 +99,8 @@ const Register = () => {
             style={{ zIndex: -1 }}
           />
         )}
-        <div className="w-full lg:w-4/12 px-4 mx-auto pt-6">
-          <div className="relative flex mt-[40px] flex-col min-w-0 break-words w-full mb-6 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
+        <div className="w-full h- lg:w-4/12 px-4 mx-auto pt-6">
+          <div className="relative flex mt-[40px] flex-col  break-words w-full shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3 z-0">
                 <h6 className="text-white text-sm font-bold">Crea una cuenta</h6>
@@ -170,7 +170,7 @@ const Register = () => {
                     {isLoading ? 'Registrando...' : 'Registrarse'}
                   </button>
                 </div>
-                <div className="text-center mt-6">
+                <div className="text-center mt-6 text-white">
                   ¿Ya tienes una cuenta? <Link to="/Loginpage" className="font-bold text-blue-500">Inicia sesión</Link>
                 </div>
               </form>

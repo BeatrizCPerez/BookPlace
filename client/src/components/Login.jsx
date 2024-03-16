@@ -96,14 +96,14 @@ const Login = () => {
         )}
         <Nav />
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-16 relative z-10">
-          <div className="relative flex mt-[20px] flex-col min-w-0 break-words w-full mb-2 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
+        <div className="relative flex mt-[10px] flex-col  pb-5 break-words w-full shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3 z-0">
                 <h6 className="text-white text-lg font-bold">Inicia sesión</h6>
               </div>
               <hr className="mt-6 border-b-1 border-blueGray-300" />
             </div>
-            <div className="flex-auto px-6 lg:px-10 py-10 pt-0">
+            <div className="flex-auto px-6 lg:px-10  mt-11  pt-0">
               <form>
                 <div className="relative w-full mb-4">
                   <label className="block uppercase text-white text-sm font-bold mb-2" htmlFor="email">
@@ -165,7 +165,7 @@ const Login = () => {
                     className="bg-blue-700 hover:bg-blue-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                   >
-                    Rellenar campos
+                    Rellenar campos.
                   </button>
                 </div>
               </form>

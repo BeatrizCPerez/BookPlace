@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import Nav from './Nav';
 
+
+
 const Donation = () => {
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const controls = useAnimation();
   const { handleSubmit, register, setValue, watch } = useForm();
 
   const handleScroll = () => {
@@ -26,10 +25,6 @@ const Donation = () => {
     };
   }, []);
 
-  useEffect(() => {
-    controls.start({ opacity: 1, y: 0 });
-  }, [controls]);
-
   const onSubmit = (data) => {
     setIsSubmitting(true);
     axios.post('https://back-iax6.onrender.com/api/enviar-formulario', data)
@@ -40,7 +35,7 @@ const Donation = () => {
           title: '¡Gracias por tu donación!',
           text: 'Hemos recibido tu información de donación. ¡Te contactaremos pronto!',
         });
-   
+        // Restablecer los valores del formulario
         setValue('name', '');
         setValue('lastName', '');
         setValue('phone', '');
@@ -60,12 +55,8 @@ const Donation = () => {
       });
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+  
+  
 
   const ScrollToTop = () => {
     useEffect(() => {
@@ -79,24 +70,9 @@ const Donation = () => {
     <>
       <ScrollToTop />
       <Nav />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={controls}
-        transition={{ duration: 0.8 }}
-        className="max-w-md mx-auto relative"
-        style={{
-          backgroundImage: `url('https://img.freepik.com/foto-gratis/gran-coleccion-libros-antiguos-estantes-madera-generados-ia_188544-29739.jpg?w=826&t=st=1710610681~exp=1710611281~hmac=a9182aaade0001eab120d67dc952bb76d5046bd6df5cd01d3a247826426ada6d')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute left-0 right-0 mt-20   bg-black bg-opacity-90 flex items-center justify-center">
-          <div className="text-white text-center p-4 rounded-md w-full max-w-sm relative">
-            {isSubmitting && (
-              <div className="absolute top-0 left-0 w-full bg-green-500 text-white text-center py-2">
-                Enviando formulario...
-              </div>
-            )}
+     <div className="absolute left-0 right-0 max-h-max bg-books bg-cover bg-black bg-no-repeat flex items-center justify-center">
+          <div className="text-white bg-opacity-90 bg-black text-center mt-10  p-10 rounded-md w-full max-w-sm relative">
+           
             <h2 className="text-2xl font-bold mb-4 text-blue-800">Formulario de Donación</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="grid grid-cols-1 gap-4 text-white">
@@ -189,25 +165,16 @@ const Donation = () => {
                 )}
               </div>
               <button
-                type="submit"
-                className="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-600"
-              >
-                Enviar
-              </button>
+            className={`text-white bg-green-500 border-0 py-1 px-4 focus:outline-none hover:bg-green-600 rounded text-sm ${isSubmitting ? 'cursor-not-allowed opacity-50' : ''}`}
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Enviando...' : 'Enviar'}
+          </button>
             </form>
           </div>
         </div>
-        {showScrollTop && (
-          <motion.button
-            className="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={scrollToTop}
-          >
-            Subir
-          </motion.button>
-        )}
-      </motion.div>
+       
     </>
   );
 };
