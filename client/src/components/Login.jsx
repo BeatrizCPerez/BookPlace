@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2'; // Importa SweetAlert
 import Nav from './Nav';
@@ -20,6 +20,14 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false); // Estado de carga
   const navigate = useNavigate();
+  const videoRef = useRef(null); 
+
+  useEffect(() => {
+    // Reproducir el video automáticamente cuando se cargue la página
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  }, []);
 
   const handleLogin = async () => {
     setIsLoading(true); // Activa el estado de carga
@@ -83,10 +91,10 @@ const Login = () => {
     <>
       <ScrollToTop />
       <section className="relative">
-      <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0">
-        <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
-        Tu navegador no admite la etiqueta de video.
-      </video>
+        <video ref={videoRef} className="hidden lg:block w-full h-full object-cover fixed inset-0 z-0">
+          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
+          Tu navegador no admite la etiqueta de video.
+        </video>
         <Nav />
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-16">
           <div className="relative flex mt-[20px] flex-col min-w-0 break-words w-full mb-2 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
