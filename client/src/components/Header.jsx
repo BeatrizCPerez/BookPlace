@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
-
+import { useMediaQuery } from '@react-hook/media-query';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -23,13 +23,13 @@ const scrollToAbout = () => {
 const Header = () => {
   const videoRef = useRef(null);
   const [isDesktop, setIsDesktop] = useState(false);
+  const isMobileAndHorizontal = useMediaQuery('(max-width: 768px) and (orientation: landscape)');
 
   useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth > 768); 
     };
 
-  
     handleResize();
     window.addEventListener('resize', handleResize);
 
@@ -39,16 +39,16 @@ const Header = () => {
   }, []);
 
   const scrollToContact = () => {
-    const contactoSection = document.getElementById('contact');
-    if (contactoSection) {
-      contactoSection.scrollIntoView({ behavior: 'smooth' });
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
     <div id='header' className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
       <ScrollToTop />
-      {isDesktop ? (
+      {isDesktop && !isMobileAndHorizontal ? (
         <video
           ref={videoRef}
           autoPlay
@@ -79,7 +79,7 @@ const Header = () => {
                   </span>
                 </h1>
                 <p className='text-xl relative z-20'>
-                BookPlace el rincon donde podrás disfrutar de ediciones exclusivas. Suscribete!!
+                  BookPlace el rincon donde podrás disfrutar de ediciones exclusivas. Suscribete!!
                 </p>
                 <p className="text-lg relative z-20">
                   Únete a nuestra comunidad de lectores.
@@ -144,4 +144,3 @@ const Header = () => {
 };
 
 export default Header;
-

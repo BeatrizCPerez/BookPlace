@@ -4,16 +4,7 @@ import Swal from 'sweetalert2';
 import Nav from './Nav';
 import Footer from './Footer';
 import axios from 'axios';
-
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-};
+import { useMediaQuery } from '@react-hook/media-query'; // Importación de useMediaQuery
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,6 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const videoRef = useRef(null);
   const [isDesktop, setIsDesktop] = useState(false);
+  const isMobileAndHorizontal = useMediaQuery('(max-width: 768px) and (orientation: landscape)'); // Uso de useMediaQuery para detectar dispositivos móviles en orientación horizontal
 
   useEffect(() => {
     if (videoRef.current && isDesktop) {
@@ -81,9 +73,8 @@ const Login = () => {
 
   return (
     <>
-      <ScrollToTop />
       <section className="relative max-w-auto">
-        {isDesktop ? (
+        {isDesktop && !isMobileAndHorizontal ? (
           <video
             ref={videoRef}
             autoPlay

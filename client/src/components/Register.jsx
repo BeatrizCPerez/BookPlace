@@ -70,7 +70,7 @@ const Register = () => {
           icon: 'success',
         }).then(() => {
           // Redireccionar al usuario después del registro exitoso
-          window.location.href = "/Loginpage";
+          <Link to="/Loginpage" ></Link>
         });
       } else {
         setIsLoading(false);
