@@ -33,14 +33,15 @@ const Header = () => {
     <div id='header' className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
       <ScrollToTop />
       <video
-        autoPlay
-        loop
-        muted
-        className="absolute w-full h-full object-cover"
-        style={{ zIndex: -1 }}
-      >
-        <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
-      </video>
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          className="absolute w-full h-full object-cover"
+          style={{ zIndex: -1 }}
+        >
+          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
+        </video>
       <div className="py-12 md:py-16 lg:py-20 relative" style={{ zIndex: 1 }}>
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
         <div className="container m-auto px-6 space-y-8 text-white md:px-12 lg:px-20 relative z-10">
