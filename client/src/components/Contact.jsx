@@ -13,6 +13,7 @@ const Contact = () => {
     fechaReserva: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,9 +21,19 @@ const Contact = () => {
       ...formData,
       [name]: value
     });
+
+    if (name === 'email') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setIsValidEmail(emailRegex.test(value));
+    }
   };
 
   const handleSubmit = () => {
+    if (!isValidEmail) {
+      Swal.fire('Error', 'Por favor, introduce un correo electrónico válido.', 'error');
+      return;
+    }
+
     setIsSubmitting(true);
     axios.post('https://back-iax6.onrender.com/api/enviar-formulario-contacto', formData)
       .then(() => {
@@ -96,11 +107,12 @@ const Contact = () => {
             name="name"
             autoComplete="name"
             value={formData.name}
-            required // Hacer el campo obligatorio
+            required
             className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
             onChange={handleChange}
           />
         </div>
+
         <div className="relative mb-2">
           <label htmlFor="telefono" className="leading-7 text-xs text-gray-300">
             Número de teléfono
@@ -115,28 +127,30 @@ const Contact = () => {
             onChange={handleChange}
           />
         </div>
+
         <div className="relative mb-2">
           <label htmlFor="email" className="leading-7 text-xs text-gray-300">
             Email <span className="text-red-500">*</span>
           </label>
           <input
-  type="email"
-  id="email"
-  name="email"
-  autoComplete="email"
-  value={formData.email}
-  required
-  pattern= "/^\S+@\S+$/i"
-  className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
-  onChange={handleChange}
-/>
+            type="email"
+            id="email"
+            name="email"
+            autoComplete="email"
+            value={formData.email}
+            required
+            className={`w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out ${isValidEmail ? '' : 'border-red-500'}`}
+            onChange={handleChange}
+          />
+          {!isValidEmail && <p className="text-xs text-red-500">Por favor, introduce un correo electrónico válido.</p>}
         </div>
+
         <div className="relative mb-2">
-        <label htmlFor="eresSocio" className="leading-7 text-xs text-gray-300">
+          <label htmlFor="eresSocio" className="leading-7 text-xs text-gray-300">
             ¿Eres Socio? <span className="text-red-500">*</span>
           </label>
           <select
-          required
+            required
             id="eresSocio"
             name="eresSocio"
             className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
@@ -144,7 +158,6 @@ const Contact = () => {
           >
             <option value="no">No</option>
             <option value="si">Sí</option>
-            
           </select>
         </div>
 
@@ -171,7 +184,7 @@ const Contact = () => {
                 type="date"
                 id="fechaReserva"
                 name="fechaReserva"
-                min={new Date().toISOString().split('T')[0]} // No permitir fechas anteriores a la actual
+                min={new Date().toISOString().split('T')[0]}
                 value={formData.fechaReserva}
                 className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
                 onChange={handleChange}
@@ -198,7 +211,7 @@ const Contact = () => {
           <button
             className={`text-white bg-green-500 border-0 py-1 px-4 focus:outline-none hover:bg-green-600 rounded text-sm ${isSubmitting ? 'cursor-not-allowed opacity-50' : ''}`}
             onClick={handleSubmit}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isValidEmail}
           >
             {isSubmitting ? 'Enviando...' : 'Enviar'}
           </button>
