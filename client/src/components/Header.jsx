@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
+
 
 // Nuevo componente para manejar el desplazamiento al cambiar de ruta
 const ScrollToTop = () => {
@@ -20,20 +21,25 @@ const scrollToAbout = () => {
   }
 };
 
-const scrollToContact = () => {
-  const contactoSection = document.getElementById('contact');
-  if (contactoSection) {
-    contactoSection.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
 const Header = () => {
+  const scrollToContact = () => {
+    const contactoSection = document.getElementById('contact');
+    if (contactoSection) {
+      contactoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div id='header' className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
       <ScrollToTop />
-      <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0">
+      <video
+        autoPlay
+        loop
+        muted
+        className="absolute w-full h-full object-cover"
+        style={{ zIndex: -1 }}
+      >
         <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
-        Tu navegador no admite la etiqueta de video.
       </video>
       <div className="py-12 md:py-16 lg:py-20 relative" style={{ zIndex: 1 }}>
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
@@ -60,11 +66,11 @@ const Header = () => {
                   </button>
                   <button
                     type="button"
-                    title="Sobre nosotros"
+                    title="Sobre nosotr@s"
                     className="w-full py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600 sm:w-max"
                     onClick={scrollToAbout}
                   >
-                    <span className="block text-white font-semibold">Sobre nosotros</span>
+                    <span className="block text-white font-semibold">Sobre nosotr@s</span>
                   </button>
                 </div>
               </div>

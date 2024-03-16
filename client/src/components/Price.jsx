@@ -1,6 +1,7 @@
 import React from 'react';
 import { Zoom } from 'react-reveal';
 
+
 const Price = () => {
   return (
     <div className="antialiased w-full h-full bg-black text-gray-400 font-inter p-10">
