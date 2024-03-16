@@ -70,8 +70,8 @@ const Donation = () => {
     <>
       <ScrollToTop />
       <Nav />
-     <div className="absolute left-0 right-0 max-h-max bg-books bg-cover bg-black bg-no-repeat flex items-center justify-center">
-          <div className="text-white bg-opacity-90 bg-black text-center mt-10  p-10 rounded-md w-full max-w-sm relative">
+     <div className="absolute left-0 right-0  bg-books bg-cover bg-black bg-no-repeat flex items-center justify-center">
+          <div className="text-white bg-opacity-90 mt-20 bg-black text-center  p-20 rounded-md w-full max-w-sm relative">
            
             <h2 className="text-2xl font-bold mb-4 text-blue-800">Formulario de Donación</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
