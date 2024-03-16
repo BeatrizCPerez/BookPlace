@@ -30,16 +30,22 @@ const Header = () => {
 
   const videoRef = useRef(null); // Declaración de la referencia al elemento de video
 
+  useEffect(() => {
+    // Reproducir el video automáticamente cuando se cargue la página
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  }, []);
+
   return (
     <div id='header' className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
       <ScrollToTop />
       <video
         ref={videoRef} // Pasa la referencia al elemento de video
-        autoPlay
         loop
         muted
         className="absolute w-full h-full object-cover"
-        style={{ zIndex: -1 }}
+        style={{ zIndex: -1, minWidth: '100%', minHeight: '100%', width: 'auto', height: 'auto' }}
       >
         <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
       </video>
