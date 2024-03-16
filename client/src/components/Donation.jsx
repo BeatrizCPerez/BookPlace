@@ -85,9 +85,15 @@ const Donation = () => {
         transition={{ duration: 0.8 }}
         className="max-w-md mx-auto relative"
       >
-        <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0 opacity-70 ">
-          <source src="../src/assets/donation.mp4" type="video/mp4" />
-          Tu navegador no admite la etiqueta de video.
+       <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          className="absolute w-full h-full object-cover"
+          style={{ zIndex: -1 }}
+        >
+          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute left-0 right-0 mt-20   bg-black bg-opacity-90 flex items-center justify-center">
