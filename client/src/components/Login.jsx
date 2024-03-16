@@ -91,12 +91,14 @@ const Login = () => {
     <>
       <ScrollToTop />
       <section className="relative">
-        <video ref={videoRef} className="hidden lg:block w-full h-full object-cover fixed inset-0 z-0">
-          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
-          Tu navegador no admite la etiqueta de video.
-        </video>
+        <div className="fixed inset-0 z-0 overflow-hidden">
+          <video ref={videoRef} className="w-full h-full object-cover">
+            <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
+            Tu navegador no admite la etiqueta de video.
+          </video>
+        </div>
         <Nav />
-        <div className="w-full lg:w-4/12 px-4 mx-auto pt-16">
+        <div className="w-full lg:w-4/12 px-4 mx-auto pt-16 relative z-10">
           <div className="relative flex mt-[20px] flex-col min-w-0 break-words w-full mb-2 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3 z-0">
@@ -181,3 +183,4 @@ const Login = () => {
 };
 
 export default Login;
+
