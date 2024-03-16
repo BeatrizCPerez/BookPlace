@@ -83,8 +83,8 @@ const Login = () => {
     <>
       <ScrollToTop />
       <section className="relative">
-        <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0">
-          <source src="../src/assets/videoLogin.mp4" type="video/mp4" />
+      <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0">
+          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
           Tu navegador no admite la etiqueta de video.
         </video>
         <Nav />
