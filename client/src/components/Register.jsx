@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import Nav from './Nav';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -35,8 +36,6 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      console.log('Datos del formulario:', { firstName, lastName, email, password });
-
       if (password.length < 6) {
         Swal.fire({
           title: 'Error',
@@ -58,18 +57,29 @@ const Register = () => {
 
       setIsLoading(true);
 
- 
-      setTimeout(() => {
+      const response = await axios.post('https://back-iax6.onrender.com/api/users/register', {
+        email,
+        password,
+      });
+
+      if (response.data.success) {
         setIsLoading(false);
         Swal.fire({
           title: 'Registro exitoso',
           text: '¡Tu cuenta ha sido creada!',
           icon: 'success',
         }).then(() => {
-        
+          // Redireccionar al usuario después del registro exitoso
           return <Link to="/Loginpage" />;
         });
-      }, 2000);
+      } else {
+        setIsLoading(false);
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un problema al intentar registrarse. Por favor, inténtalo de nuevo más tarde.',
+          icon: 'error',
+        });
+      }
     } catch (error) {
       setIsLoading(false);
       console.error('Error al intentar registrar:', error);
@@ -184,4 +194,3 @@ const Register = () => {
 };
 
 export default Register;
-

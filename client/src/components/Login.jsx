@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Nav from './Nav';
 import Footer from './Footer';
+import axios from 'axios';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -45,21 +46,28 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // Simular inicio de sesión exitoso después de 2 segundos (para demostración)
-      setTimeout(() => {
-        setIsLoading(false);
-        // Redireccionar a la página de inicio después de iniciar sesión
+      const response = await axios.post('https://back-iax6.onrender.com/api/users/login', { email, password });
+    
+      if (response.data.success) {
         navigate('/HomeLogin');
-      }, 2000);
+      } else {
+  
+        Swal.fire({
+          title: 'Error',
+          text: 'Credenciales inválidas. Por favor, inténtalo de nuevo.',
+          icon: 'error',
+        });
+      }
     } catch (error) {
-      setIsLoading(false);
       console.error('Error al intentar iniciar sesión', error);
-      // Mostrar mensaje de error
+      // Mostrar mensaje de error si hubo un error de conexión
       Swal.fire({
         title: 'Error',
-        text: 'Hubo un error al iniciar sesión. Por favor, intenta de nuevo más tarde.',
+        text: 'Hubo un error al intentar iniciar sesión. Por favor, inténtalo de nuevo más tarde.',
         icon: 'error',
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -96,7 +104,7 @@ const Login = () => {
         )}
         <Nav />
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-16 relative z-10">
-        <div className="relative flex mt-[10px] flex-col  pb-5 break-words w-full shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
+          <div className="relative flex mt-[10px] flex-col  pb-5 break-words w-full shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3 z-0">
                 <h6 className="text-white text-lg font-bold">Inicia sesión</h6>
@@ -130,16 +138,6 @@ const Login = () => {
                     className="border-0 px-4 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Contraseña"
                   />
-                </div>
-                <div>
-                  <label className="inline-flex items-center cursor-pointer" htmlFor="customCheckLogin">
-                    <input
-                      id="customCheckLogin"
-                      type="checkbox"
-                      className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                    />
-                    <span className="ml-2 text-sm font-semibold text-white">Remember me</span>
-                  </label>
                 </div>
                 <div className="text-center mt-6 bg-blue-700 hover:bg-blue-800">
                   <button
@@ -179,4 +177,3 @@ const Login = () => {
 };
 
 export default Login;
-
