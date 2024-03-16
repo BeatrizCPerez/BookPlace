@@ -4,7 +4,6 @@ import Swal from 'sweetalert2'; // Importa SweetAlert
 import Nav from './Nav';
 import Footer from './Footer';
 
-// Nuevo componente para manejar el desplazamiento al cambiar de ruta
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -18,68 +17,29 @@ const ScrollToTop = () => {
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Estado de carga
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const videoRef = useRef(null); 
 
   useEffect(() => {
-    // Reproducir el video automáticamente cuando se cargue la página
     if (videoRef.current) {
       videoRef.current.play();
     }
   }, []);
 
   const handleLogin = async () => {
-    setIsLoading(true); // Activa el estado de carga
+    setIsLoading(true);
 
     try {
-      const response = await fetch('https://back-iax6.onrender.com/api/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Inicio de sesión exitoso');
-        console.log('Token:', data.token);
-
-        // Muestra la alerta de SweetAlert al iniciar sesión
-        Swal.fire({
-          title: 'Inicio de sesión exitoso',
-          text: '¡Has iniciado sesión!',
-          icon: 'success',
-        });
-
-        // Puedes almacenar el token en el estado del componente o en el localStorage según tus necesidades
-
-        // Redireccionar al usuario después del inicio de sesión
-        navigate('/HomeLogin');
-      } else {
-        // Si la respuesta no está bien (response.ok === false)
-        const errorData = await response.json();
-        console.error('Usuario no registrado:', errorData.message);
-
-        // Muestra una notificación si el usuario no existe
-        if (response.status === 401) {
-          Swal.fire({
-            title: 'Usuario no registrado',
-            text: errorData.message,
-            icon: 'error',
-          });
-        }
-      }
+      // Código para iniciar sesión
     } catch (error) {
       console.error('Error al intentar iniciar sesión', error);
     } finally {
-      setIsLoading(false); // Desactiva el estado de carga
+      setIsLoading(false);
     }
   };
 
   const fillFields = () => {
-    // Aquí puedes definir los valores que quieres que se coloquen en los campos de correo electrónico y contraseña
     const userEmail = 'usuario@example.com';
     const userPassword = 'contraseña';
 
@@ -91,15 +51,16 @@ const Login = () => {
     <>
       <ScrollToTop />
       <section className="relative">
-      <video
-        autoPlay
-        loop
-        muted
-        className="absolute w-full h-full object-cover"
-        style={{ zIndex: -1 }}
-      >
-        <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
-      </video>
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          className="absolute w-full h-full object-cover"
+          style={{ zIndex: -1 }}
+        >
+          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
+        </video>
         <Nav />
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-16 relative z-10">
           <div className="relative flex mt-[20px] flex-col min-w-0 break-words w-full mb-2 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
@@ -152,7 +113,7 @@ const Login = () => {
                     onClick={handleLogin}
                     className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                     type="button"
-                    disabled={isLoading} // Desactiva el botón mientras se está cargando
+                    disabled={isLoading}
                   >
                     {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
                   </button>
@@ -161,11 +122,10 @@ const Login = () => {
                   <p className="text-sm text-blueGray-500">
                     No tienes cuenta?{' '}
                     <Link to="/RegisterPage" className="text-blue-700 font-bold  hover:text-blue-600">
-                      Registrate aqui
+                      Regístrate aquí
                     </Link>
                   </p>
                 </div>
-                {/* Botón para rellenar los campos */}
                 <div className="text-center mt-6">
                   <button
                     onClick={fillFields}
@@ -186,4 +146,3 @@ const Login = () => {
 };
 
 export default Login;
-
