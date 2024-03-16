@@ -106,7 +106,7 @@ const Contact = () => {
             Número de teléfono
           </label>
           <input
-            type="text" // Permitir cualquier entrada de texto
+            type="text" 
             id="telefono"
             name="telefono"
             autoComplete="tel"

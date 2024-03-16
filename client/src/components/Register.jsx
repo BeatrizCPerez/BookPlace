@@ -11,19 +11,34 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const videoRef = useRef(null); 
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    // Reproducir el video automáticamente cuando se cargue la página
-    if (videoRef.current) {
+
+    if (videoRef.current && isDesktop) {
       videoRef.current.play();
     }
+  }, [isDesktop]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 768);
+    };
+
+ 
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const handleRegister = async () => {
     try {
       console.log('Datos del formulario:', { firstName, lastName, email, password });
 
-      // Verificar que la contraseña tenga al menos 6 caracteres
+     
       if (password.length < 6) {
         Swal.fire({
           title: 'Error',
@@ -33,7 +48,7 @@ const Register = () => {
         return;
       }
 
-      // Verificar el formato de correo electrónico
+ 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         Swal.fire({
@@ -54,7 +69,7 @@ const Register = () => {
           text: '¡Tu cuenta ha sido creada!',
           icon: 'success',
         }).then(() => {
-          window.location.href = '/login';
+          window.location.href = '/Loginpage';
         });
       }, 2000); 
     } catch (error) {
@@ -67,16 +82,25 @@ const Register = () => {
     <>
       <section className="relative">
         <Nav />
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          className="absolute w-full h-full object-cover"
-          style={{ zIndex: -1 }}
-        >
-          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
-        </video>
+        {isDesktop ? (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            className="absolute w-full h-full object-cover"
+            style={{ zIndex: -1 }}
+          >
+            <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
+            alt="Fondo"
+            className="absolute w-full h-full object-cover"
+            style={{ zIndex: -1 }}
+          />
+        )}
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-6">
           <div className="relative flex mt-[40px] flex-col min-w-0 break-words w-full mb-6 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 
-// Nuevo componente para manejar el desplazamiento al cambiar de ruta
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -21,6 +21,23 @@ const scrollToAbout = () => {
 };
 
 const Header = () => {
+  const videoRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 768); 
+    };
+
+  
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const scrollToContact = () => {
     const contactoSection = document.getElementById('contact');
     if (contactoSection) {
@@ -28,27 +45,28 @@ const Header = () => {
     }
   };
 
-  const videoRef = useRef(null); // Declaración de la referencia al elemento de video
-
-  useEffect(() => {
-    // Reproducir el video automáticamente cuando se cargue la página
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
-  }, []);
-
   return (
     <div id='header' className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
       <ScrollToTop />
-      <video
-        ref={videoRef} // Pasa la referencia al elemento de video
-        loop
-        muted
-        className="absolute w-full h-full object-cover"
-        style={{ zIndex: -1, minWidth: '100%', minHeight: '100%', width: 'auto', height: 'auto' }}
-      >
-        <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
-      </video>
+      {isDesktop ? (
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          className="absolute w-full h-full object-cover"
+          style={{ zIndex: -1 }}
+        >
+          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
+        </video>
+      ) : (
+        <img
+          src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
+          alt="Fondo"
+          className="absolute w-full h-full object-cover"
+          style={{ zIndex: -1 }}
+        />
+      )}
       <div className="py-12 md:py-16 lg:py-20 relative" style={{ zIndex: 1 }}>
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
         <div className="container m-auto px-6 space-y-8 text-white md:px-12 lg:px-20 relative z-10">
@@ -56,7 +74,7 @@ const Header = () => {
             <div className="justify-center text-center gap-6 md:text-left md:flex lg:items-center lg:gap-16">
               <div className="order-last mb-6 space-y-6 md:mb-0 md:w-6/12 lg:w-6/12">
                 <h1 className="text-4xl text-gray-300 font-bold md:text-5xl relative z-20">
-                  <span className="relative inline-block">
+                  <span className="relative mt-5 inline-block">
                     ¡Descubre ediciones exclusivas y lleva tus lecturas al siguiente nivel!
                   </span>
                 </h1>
@@ -123,3 +141,4 @@ const Header = () => {
 };
 
 export default Header;
+

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
@@ -10,6 +10,7 @@ const Donation = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const controls = useAnimation();
   const { handleSubmit, register, setValue, watch } = useForm();
+  const videoRef = useRef(null); // Define videoRef utilizando useRef
 
   const handleScroll = () => {
     if (window.scrollY > 200) {
@@ -85,15 +86,9 @@ const Donation = () => {
         transition={{ duration: 0.8 }}
         className="max-w-md mx-auto relative"
       >
-       <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          className="absolute w-full h-full object-cover"
-          style={{ zIndex: -1 }}
-        >
-          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
+        <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0 opacity-70 " ref={videoRef}>
+          <source src="../src/assets/donation.mp4" type="video/mp4" />
+          Tu navegador no admite la etiqueta de video.
         </video>
 
         <div className="absolute left-0 right-0 mt-20   bg-black bg-opacity-90 flex items-center justify-center">

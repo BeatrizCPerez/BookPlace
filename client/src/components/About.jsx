@@ -7,7 +7,7 @@ const About = () => {
   return (
     <section id='about' className="relative bg-gray-100 py-8 md:py-12">
       <div className="container mx-auto">
-        {/* Línea Divisoria Superior con Ancho Completo */}
+       
         <div className="border-t-4 border-gray-500 my-8 w-full"></div>
 
         <div className="flex flex-wrap items-center">
@@ -78,7 +78,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* Línea Divisoria Superior con Ancho Completo */}
         <div className="border-t-4 border-gray-500 my-8 "></div>
 
         <div className=" md:w-5/12 mx-auto">

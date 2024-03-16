@@ -19,12 +19,26 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const videoRef = useRef(null); 
+  const videoRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoRef.current && isDesktop) {
       videoRef.current.play();
     }
+  }, [isDesktop]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 768); 
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const handleLogin = async () => {
@@ -51,16 +65,25 @@ const Login = () => {
     <>
       <ScrollToTop />
       <section className="relative">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          className="absolute w-full h-full object-cover"
-          style={{ zIndex: -1 }}
-        >
-          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
-        </video>
+        {isDesktop ? (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            className="absolute w-full h-full object-cover"
+            style={{ zIndex: -1 }}
+          >
+            <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
+            alt="Fondo"
+            className="absolute w-full h-full object-cover"
+            style={{ zIndex: -1 }}
+          />
+        )}
         <Nav />
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-16 relative z-10">
           <div className="relative flex mt-[20px] flex-col min-w-0 break-words w-full mb-2 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
