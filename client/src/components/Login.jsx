@@ -60,7 +60,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error('Error al intentar iniciar sesión', error);
-      // Mostrar mensaje de error si hubo un error de conexión
+     
       Swal.fire({
         title: 'Error',
         text: 'Hubo un error al intentar iniciar sesión. Por favor, inténtalo de nuevo más tarde.',

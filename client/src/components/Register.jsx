@@ -113,7 +113,7 @@ const Register = () => {
           <div className="relative flex mt-[40px] flex-col  break-words w-full shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3 z-0">
-                <h6 className="text-white text-sm font-bold">Crea una cuenta</h6>
+                <h6 className="text-white text-lg font-bold">Crea una cuenta</h6>
               </div>
               <hr className="mt-6 border-b-1 border-blueGray-300" />
             </div>
