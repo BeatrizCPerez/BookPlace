@@ -25,7 +25,6 @@ const Register = () => {
       setIsDesktop(window.innerWidth > 768);
     };
 
- 
     handleResize();
     window.addEventListener('resize', handleResize);
 
@@ -38,7 +37,6 @@ const Register = () => {
     try {
       console.log('Datos del formulario:', { firstName, lastName, email, password });
 
-     
       if (password.length < 6) {
         Swal.fire({
           title: 'Error',
@@ -48,7 +46,6 @@ const Register = () => {
         return;
       }
 
- 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         Swal.fire({
@@ -69,9 +66,10 @@ const Register = () => {
           text: '¡Tu cuenta ha sido creada!',
           icon: 'success',
         }).then(() => {
-          window.location.href = '/Loginpage';
+          // Redireccionar a la página de inicio de sesión utilizando Link de React Router
+          return <Link to="/Loginpage" />;
         });
-      }, 2000); 
+      }, 2000);
     } catch (error) {
       setIsLoading(false);
       console.error('Error al intentar registrar:', error);

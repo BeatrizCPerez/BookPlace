@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import Swal from 'sweetalert2'; // Importa SweetAlert
+import Swal from 'sweetalert2';
 import Nav from './Nav';
 import Footer from './Footer';
 
@@ -30,7 +30,7 @@ const Login = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsDesktop(window.innerWidth > 768); 
+      setIsDesktop(window.innerWidth > 768);
     };
 
     handleResize();
@@ -45,11 +45,21 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // Código para iniciar sesión
+      // Simular inicio de sesión exitoso después de 2 segundos (para demostración)
+      setTimeout(() => {
+        setIsLoading(false);
+        // Redireccionar a la página de inicio después de iniciar sesión
+        navigate('/HomeLogin');
+      }, 2000);
     } catch (error) {
-      console.error('Error al intentar iniciar sesión', error);
-    } finally {
       setIsLoading(false);
+      console.error('Error al intentar iniciar sesión', error);
+      // Mostrar mensaje de error
+      Swal.fire({
+        title: 'Error',
+        text: 'Hubo un error al iniciar sesión. Por favor, intenta de nuevo más tarde.',
+        icon: 'error',
+      });
     }
   };
 
@@ -64,7 +74,7 @@ const Login = () => {
   return (
     <>
       <ScrollToTop />
-      <section className="relative">
+      <section className="relative max-w-auto">
         {isDesktop ? (
           <video
             ref={videoRef}
@@ -142,7 +152,7 @@ const Login = () => {
                   </button>
                 </div>
                 <div className="text-center mt-6">
-                  <p className="text-sm text-blueGray-500">
+                  <p className="text-sm text-white">
                     No tienes cuenta?{' '}
                     <Link to="/RegisterPage" className="text-blue-700 font-bold  hover:text-blue-600">
                       Regístrate aquí
@@ -169,3 +179,4 @@ const Login = () => {
 };
 
 export default Login;
+
