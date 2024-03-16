@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Swal from 'sweetalert2';  // Importa SweetAlert
+import React, { useState, useEffect, useRef } from 'react';
+import Swal from 'sweetalert2';  
 import Nav from './Nav';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,14 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const videoRef = useRef(null); 
+
+  useEffect(() => {
+    // Reproducir el video automáticamente cuando se cargue la página
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  }, []);
 
   const handleRegister = async () => {
     try {
@@ -41,17 +49,14 @@ const Register = () => {
       // Simular registro exitoso después de 2 segundos (para demostración)
       setTimeout(() => {
         setIsLoading(false);
-        // Mostrar alerta de registro exitoso
         Swal.fire({
           title: 'Registro exitoso',
           text: '¡Tu cuenta ha sido creada!',
           icon: 'success',
         }).then(() => {
-          // Redirigir al inicio de sesión después del registro exitoso
-          // Aquí usamos Link para redirigir en lugar de useHistory
-          window.location.href = '/login'; // Cambia '/login' a la ruta real de inicio de sesión
+          window.location.href = '/login';
         });
-      }, 2000); // Simular 2 segundos de tiempo de carga
+      }, 2000); 
     } catch (error) {
       setIsLoading(false);
       console.error('Error al intentar registrar:', error);
@@ -62,10 +67,10 @@ const Register = () => {
     <>
       <section className="relative">
         <Nav />
-        <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0">
-        <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
-        Tu navegador no admite la etiqueta de video.
-      </video>
+        <video ref={videoRef} className="hidden lg:block w-full h-full object-cover fixed inset-0 z-0">
+          <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
+          Tu navegador no admite la etiqueta de video.
+        </video>
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-6">
           <div className="relative flex mt-[40px] flex-col min-w-0 break-words w-full mb-6 shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">
@@ -132,7 +137,7 @@ const Register = () => {
                     onClick={handleRegister}
                     className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                     type="button"
-                    disabled={isLoading} // Deshabilita el botón mientras se está procesando la solicitud
+                    disabled={isLoading} 
                   >
                     {isLoading ? 'Registrando...' : 'Registrarse'}
                   </button>
