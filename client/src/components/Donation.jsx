@@ -10,7 +10,6 @@ const Donation = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const controls = useAnimation();
   const { handleSubmit, register, setValue, watch } = useForm();
-  const videoRef = useRef(null); // Define videoRef utilizando useRef
 
   const handleScroll = () => {
     if (window.scrollY > 200) {
@@ -41,7 +40,7 @@ const Donation = () => {
           title: '¡Gracias por tu donación!',
           text: 'Hemos recibido tu información de donación. ¡Te contactaremos pronto!',
         });
-        // Restablecer los valores del formulario
+   
         setValue('name', '');
         setValue('lastName', '');
         setValue('phone', '');
@@ -85,12 +84,12 @@ const Donation = () => {
         animate={controls}
         transition={{ duration: 0.8 }}
         className="max-w-md mx-auto relative"
+        style={{
+          backgroundImage: `url('https://img.freepik.com/foto-gratis/gran-coleccion-libros-antiguos-estantes-madera-generados-ia_188544-29739.jpg?w=826&t=st=1710610681~exp=1710611281~hmac=a9182aaade0001eab120d67dc952bb76d5046bd6df5cd01d3a247826426ada6d')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
       >
-        <video autoPlay muted loop className="w-full h-full object-cover fixed inset-0 z-0 opacity-70 " ref={videoRef}>
-          <source src="../src/assets/donation.mp4" type="video/mp4" />
-          Tu navegador no admite la etiqueta de video.
-        </video>
-
         <div className="absolute left-0 right-0 mt-20   bg-black bg-opacity-90 flex items-center justify-center">
           <div className="text-white text-center p-4 rounded-md w-full max-w-sm relative">
             {isSubmitting && (

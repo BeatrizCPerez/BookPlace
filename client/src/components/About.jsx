@@ -21,10 +21,10 @@ const About = () => {
                 />
                 <blockquote className="relative p-6 mb-4">
                   <h4 className="text-2xl font-bold text-gray-700">
-                    ¡Bienvenido a nuestro servicio de Alquiler de Libros y Recolección Ecológica de Libros sin Uso!
+                    ¡Bienvenido a nuestro servicio de prestamos de Libros y Recolección Ecológica de Libros sin Uso!
                   </h4>
                   <p className="text-lg font-light mt-2 text-gray-800">
-                    Alquila libros por solo €2 durante 2 días. ¡Suscríbete por €10 al mes y disfruta de alquiler ilimitado de libros! Contribuye al medio ambiente donando libros no utilizados.
+                    Disfruta de los libros por solo 10€ al mes durante 15 días. ¡Suscríbete y  disfruta del prestamo ilimitado de libros! Contribuye al medio ambiente donando libros no utilizados.
                   </p>
                 </blockquote>
               </div>
@@ -53,9 +53,9 @@ const About = () => {
                     <div className="p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-5 bg-teal-500 rounded-full">
                       <i className="fas fa-book-open text-white"></i>
                     </div>
-                    <h6 className="text-xl mb-2 font-semibold">Alquiler de Libros Accesible</h6>
+                    <h6 className="text-xl mb-2 font-semibold">Prestamo de Libros Accesible</h6>
                     <p className="text-gray-600">
-                      Alquila cualquier libro de nuestra colección por solo €2 durante un periodo de 2 días.
+                      Puedes reservar cualquier libro de nuestra colección por solo 10€ al mes durante un periodo de 15 días.
                     </p>
                   </div>
                 </div>

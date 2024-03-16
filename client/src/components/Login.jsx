@@ -120,7 +120,7 @@ const Login = () => {
                 </div>
                 <div className="relative w-full mb-4">
                   <label className="block uppercase text-white text-sm font-bold mb-2" htmlFor="password">
-                    Password
+                    Contraseña
                   </label>
                   <input
                     type="password"
@@ -128,7 +128,7 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="border-0 px-4 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Password"
+                    placeholder="Contraseña"
                   />
                 </div>
                 <div>

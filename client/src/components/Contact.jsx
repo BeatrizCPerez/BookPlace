@@ -10,7 +10,7 @@ const Contact = () => {
     email: '',
     eresSocio: '',
     libroDeseado: '',
-    fechaAlquiler: '',
+    fechaReserva: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -53,10 +53,10 @@ const Contact = () => {
               Contactanos
               <p className='p-2'>1. Rellena el formulario.</p>
               <p className='p-2'> Si quieres <span className='text-green-500'>información</span> solo rellena los datos de contacto, te contactaremos a la mayor brevedad posible.</p>
-              <p className='p-2'>2. Si deseas alquilar, completa el formulario.</p>
+              <p className='p-2'>2. Si deseas reservar, completa el formulario.</p>
               <p className='p-2'>3. Una vez envíes el formulario te informaremos si está disponible tu libro.</p>
               <p className='p-2'>4. Si tu libro está disponible, hacemos la reserva y abonarás el precio al recogerlo.</p>
-              <p className='p-2'>5. Recuerda, tienes mínimo 48h para disfrutarlo.</p>
+              <p className='p-2'>5. Recuerda, tienes mínimo de 15 dias para disfrutarlo.</p>
             </h2>
 
             <div className="w-full lg:w-2/4 bg-gray-100">
@@ -83,7 +83,7 @@ const Contact = () => {
         </p>
         <h2 className="text-gray-100 text-md mb-1 font-medium title-font">Contactanos</h2>
         <p className="leading-relaxed mb-3 text-gray-300 text-sm">
-          ¿Quieres alquilar un libro? Rellena el siguiente formulario. Si solo deseas información, completa tus datos.
+          ¿Quieres reservar un libro? Rellena el siguiente formulario. Si solo deseas información, completa tus datos.
         </p>
 
         <div className="relative mb-2">
@@ -164,15 +164,15 @@ const Contact = () => {
             </div>
 
             <div className="relative mb-2">
-              <label htmlFor="fechaAlquiler" className="leading-7 text-xs text-gray-300">
-                Fecha de alquiler
+              <label htmlFor="fechaReserva" className="leading-7 text-xs text-gray-300">
+                Fecha de reserva
               </label>
               <input
                 type="date"
-                id="fechaAlquiler"
-                name="fechaAlquiler"
+                id="fechaReserva"
+                name="fechaReserva"
                 min={new Date().toISOString().split('T')[0]} // No permitir fechas anteriores a la actual
-                value={formData.fechaAlquiler}
+                value={formData.fechaReserva}
                 className="w-full bg-gray-700 rounded border border-gray-600 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-xs outline-none text-gray-100 py-1 px-2 leading-6 transition-colors duration-200 ease-in-out"
                 onChange={handleChange}
               />

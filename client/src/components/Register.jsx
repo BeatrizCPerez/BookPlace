@@ -58,7 +58,7 @@ const Register = () => {
 
       setIsLoading(true);
 
-      // Simular registro exitoso después de 2 segundos (para demostración)
+ 
       setTimeout(() => {
         setIsLoading(false);
         Swal.fire({
@@ -66,7 +66,7 @@ const Register = () => {
           text: '¡Tu cuenta ha sido creada!',
           icon: 'success',
         }).then(() => {
-          // Redireccionar a la página de inicio de sesión utilizando Link de React Router
+        
           return <Link to="/Loginpage" />;
         });
       }, 2000);
@@ -93,7 +93,7 @@ const Register = () => {
           </video>
         ) : (
           <img
-            src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
+            src="https://img.freepik.com/foto-gratis/gran-coleccion-libros-antiguos-estantes-madera-generados-ia_188544-29739.jpg?w=826&t=st=1710610681~exp=1710611281~hmac=a9182aaade0001eab120d67dc952bb76d5046bd6df5cd01d3a247826426ada6d"
             alt="Fondo"
             className="absolute w-full h-full object-cover"
             style={{ zIndex: -1 }}
@@ -184,3 +184,4 @@ const Register = () => {
 };
 
 export default Register;
+

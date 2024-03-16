@@ -33,7 +33,7 @@ const Price = () => {
                     <div id="title" className="w-full py-5 border-b border-gray-800">
                       <h2 className="font-bold text-3xl text-white">Básico</h2>
                       <h3 className="font-normal text-blue-500 text-xl mt-2">
-                        €2<span>,00</span>/libro
+                        €10<span>,00</span>/mes
                       </h3>
                     </div>
                     <div id="content" className="">
@@ -49,7 +49,7 @@ const Price = () => {
                       </div>
                       <div id="contain" className="leading-8 mb-10 text-lg font-light">
                         <ul>
-                          <li>Alquiler por 48 horas</li>
+                          <li>Prestamo por 15 dias</li>
                           <li>Versión estándar</li>
                           <li>Disponibilidad inmediata</li>
                         </ul>
@@ -74,7 +74,7 @@ const Price = () => {
                     <div id="title" className="w-full py-5 border-b border-gray-800">
                       <h2 className="font-bold text-3xl text-white">Exclusivo</h2>
                       <h3 className="font-normal text-blue-500 text-xl mt-2">
-                        €4<span>,00</span>/libro
+                        €12<span>,00</span>/mes
                       </h3>
                     </div>
                     <div id="content" className="">
@@ -90,8 +90,8 @@ const Price = () => {
                       </div>
                       <div id="contain" className="leading-8 mb-10 text-lg font-light">
                         <ul>
-                          <li>Alquiler a partir de 48 horas</li>
-                          <li>Versión HD</li>
+                          <li>Prestamo por 1 mes</li>
+                          <li>Versiónes premium</li>
                           <li>Acceso a contenido exclusivo</li>
                         </ul>
                         <div id="choose" className="w-full mt-10 px-6">
@@ -115,7 +115,7 @@ const Price = () => {
                     <div id="title" className="w-full py-5 border-b border-gray-800">
                       <h2 className="font-bold text-3xl text-white">VIP</h2>
                       <h3 className="font-normal text-blue-500 text-xl mt-2">
-                        €6<span>,00</span>/libro
+                        €15<span>,00</span>/mes
                       </h3>
                     </div>
                     <div id="content" className="">
@@ -131,9 +131,9 @@ const Price = () => {
                       </div>
                       <div id="contain" className="leading-8 mb-10 text-lg font-light">
                         <ul>
-                          <li>Alquiler a partir de 48 horas</li>
-                          <li>Versión 4K</li>
-                          <li>Acceso a estrenos exclusivos</li>
+                          <li>Prestamo de hasta 2 meses</li>
+                          <li>Versiones únicas</li>
+                          <li>Acceso a lanzamientos exclusivos</li>
                         </ul>
                         <div id="choose" className="w-full mt-10 px-6">
                           <a

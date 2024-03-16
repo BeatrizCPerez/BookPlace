@@ -75,11 +75,14 @@ const Header = () => {
               <div className="order-last mb-6 space-y-6 md:mb-0 md:w-6/12 lg:w-6/12">
                 <h1 className="text-4xl text-gray-300 font-bold md:text-5xl relative z-20">
                   <span className="relative mt-5 inline-block">
-                    ¡Descubre ediciones exclusivas y lleva tus lecturas al siguiente nivel!
+                    Reserva ya tu libro favorito!!
                   </span>
                 </h1>
+                <p className='text-xl relative z-20'>
+                BookPlace el rincon donde podrás disfrutar de ediciones exclusivas. Suscribete!!
+                </p>
                 <p className="text-lg relative z-20">
-                  Únete a nuestra comunidad de lectores y accede a las ediciones más exclusivas que harán volar tu imaginación.
+                  Únete a nuestra comunidad de lectores.
                 </p>
                 <div className="flex flex-row-reverse flex-wrap justify-center gap-4 md:gap-6 md:justify-end">
                   <button

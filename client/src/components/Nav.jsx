@@ -12,7 +12,7 @@ const Nav = () => {
     <nav className="bg-black bg-opacity-30 p-4  fixed w-full z-50">
       <div className="container mx-auto flex items-center justify-between">
         <Link to="/" className="text-white font-bold text-xl">
-          BookStore
+          BookPlace
         </Link>
 
         <button
@@ -54,7 +54,7 @@ const Nav = () => {
 
         <div className="hidden md:flex space-x-4">
           <Link to="/Loginpage" className="text-white text-xl hover:text-green-500">
-           Administrador
+           Iniciar sesión
           </Link>
         </div>
 
@@ -62,7 +62,7 @@ const Nav = () => {
           <div className="lg:hidden md:hidden absolute top-full left-0 right-0 bg-gray-800 bg-opacity-80 backdrop-filter backdrop-blur-lg p-4 rounded-md shadow-md">
           
             <Link to="/Loginpage" className="text-green-500 text-xl w-25 block py-2 hover:text-gray-500">
-              Administrador
+              Iniciar sesión
             </Link>
           </div>
         )}

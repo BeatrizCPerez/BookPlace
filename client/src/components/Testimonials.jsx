@@ -16,7 +16,7 @@ const Testimonials = () => {
                   alt="testimonial"
                   className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
                   src="https://previews.123rf.com/images/iordani/iordani1601/iordani160100088/50111664-close-up-retrato-de-ruidosamente-riendo-hombre-joven-aislado-en-fondo-blanco-cara-de-tonto-tonto-de.jpg"
-                  style={{ objectFit: 'cover', width: '100%', height: '100%', borderRadius: '50%' }}
+                  style={{width: '20%', height: '20%', borderRadius: '50%' }}
                 />
                 
                 <p className="leading-relaxed">
@@ -45,7 +45,7 @@ const Testimonials = () => {
                   alt="testimonial"
                   className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
                   src="https://st1.uvnimg.com/dims4/default/600228f/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fimj%2Fvivirsalud%2FL%2FLas-caracteristicas-de-los-diferentes-tipos-de-rostros-2.jpg"
-                  style={{ objectFit: 'cover', width: '100%', height: '100%', borderRadius: '50%' }}
+                  style={{width: '20%', height: '20%', borderRadius: '50%' }}
                 />
                 <p className="leading-relaxed">
                   Alquilar libros aquí es como descubrir un tesoro escondido. Encontré un libro fascinante que no estaba disponible en ninguna otra librería. Además, el proceso de alquiler fue sencillo y rápido. ¡Muy recomendado!
@@ -70,7 +70,7 @@ const Testimonials = () => {
                   alt="testimonial"
                   className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
                   src="https://cdn3.dorsia.es/wp-content/uploads/2023/04/28223401/Florence-Colgate-02.jpg"
-                  style={{ objectFit: 'cover', width: '100%', height: '100%', borderRadius: '50%' }}
+                  style={{width: '20%', height: '20%', borderRadius: '50%' }}
                 />
                 <p className="leading-relaxed">
                   Mi experiencia de alquilar un libro aquí fue excelente. No solo encontré el libro que estaba buscando, sino que también pude llevarme a casa un libro adicional que no pensé que necesitaría. ¡El servicio es maravilloso!
