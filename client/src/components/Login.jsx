@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation} from 'react-router-dom';
-import Swal from 'sweetalert2';  // Importa SweetAlert
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importa SweetAlert
 import Nav from './Nav';
 import Footer from './Footer';
 
@@ -18,9 +18,12 @@ const ScrollToTop = () => {
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Estado de carga
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    setIsLoading(true); // Activa el estado de carga
+
     try {
       const response = await fetch('https://back-iax6.onrender.com/api/users/login', {
         method: 'POST',
@@ -62,6 +65,8 @@ const Login = () => {
       }
     } catch (error) {
       console.error('Error al intentar iniciar sesión', error);
+    } finally {
+      setIsLoading(false); // Desactiva el estado de carga
     }
   };
 
@@ -134,8 +139,9 @@ const Login = () => {
                     onClick={handleLogin}
                     className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                     type="button"
+                    disabled={isLoading} // Desactiva el botón mientras se está cargando
                   >
-                    Iniciar sesión
+                    {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
                   </button>
                 </div>
                 <div className="text-center mt-6">
