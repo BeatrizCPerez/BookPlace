@@ -46,7 +46,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div id='header' className="relative" style={{ height: isDesktop ? '90vh' : '90vh', overflow: 'hidden' }}>
+    <div id='header' className="relative" style={{ height: isDesktop ? '90vh' : '95vh', overflow: 'hidden' }}>
       <ScrollToTop />
       {isDesktop && !isMobileAndHorizontal ? (
         <video

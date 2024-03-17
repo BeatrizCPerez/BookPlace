@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Swal from 'sweetalert2';  
 import Nav from './Nav';
 import Footer from './Footer';
@@ -12,28 +12,8 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const videoRef = useRef(null); 
   const [isDesktop, setIsDesktop] = useState(false);
   const isMobileAndHorizontal = useMediaQuery('(max-width: 768px) and (orientation: landscape)');
-
-  useEffect(() => {
-    if (videoRef.current && isDesktop) {
-      videoRef.current.play();
-    }
-  }, [isDesktop]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth > 768);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const handleRegister = async () => {
     try {
@@ -70,7 +50,10 @@ const Register = () => {
           text: '¡Tu cuenta ha sido creada!',
           icon: 'success',
         }).then(() => {
-          window.location.reload();
+          setFirstName('');
+          setLastName('');
+          setEmail('');
+          setPassword('');
         });
       } else {
         setIsLoading(false);
@@ -207,5 +190,3 @@ const Register = () => {
 };
 
 export default Register;
-
-
