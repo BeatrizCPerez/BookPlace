@@ -61,7 +61,7 @@ const HomeLogin = () => {
         setNewBook({
           Img: '',
           Name: '',
-          Year: 0,
+          Year: '',
           Author: '',
           Description: '',
         });

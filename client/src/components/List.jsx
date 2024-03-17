@@ -95,8 +95,8 @@ const List = () => {
                 role="list"
                 className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
               >
-                {books.slice(0, visibleBooks).map((book) => (
-                  <BookCard key={book.id} book={book} />
+                {books.slice(0).reverse().map((book, index) => (
+                  <BookCard key={book.id} book={book} isNew={index < 4} />
                 ))}
               </ul>
             </div>
@@ -119,14 +119,19 @@ const List = () => {
   );
 };
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, isNew }) => {
   const { Name, Author, Year, Img, Description } = book;
 
   return (
-    <li className="bg-black text-blue-500 border-yellow-500 border overflow-hidden mb-8">
+    <li className={`bg-black text-blue-500 border-yellow-500 border overflow-hidden mb-8 relative ${isNew ? 'animate-pulse' : ''}`}>
       <div className="relative overflow-hidden">
         <div className="aspect-h-1 aspect-w-1">
-          <div className="transform transition-transform duration-300 hover:scale-110">
+          <div className="transform transition-transform duration-300 hover:scale-110 relative">
+            {isNew && (
+              <div className="absolute top-0 left-0 bg-green-500 text-white px-2 py-1 text-sm font-semibold rounded-tl-md rounded-br-md">
+                Recién llegado
+              </div>
+            )}
             <img src={Img} alt={Name} className="h-full w-full object-cover object-center" />
           </div>
         </div>
@@ -142,3 +147,4 @@ const BookCard = ({ book }) => {
 };
 
 export default List;
+

@@ -70,20 +70,32 @@ const Register = () => {
           text: '¡Tu cuenta ha sido creada!',
           icon: 'success',
         }).then(() => {
-          // Redireccionar al usuario después del registro exitoso
-          <Link to="/Loginpage" ></Link>
+          window.location.reload();
         });
       } else {
         setIsLoading(false);
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un problema al intentar registrarse. Por favor, inténtalo de nuevo más tarde.',
-          icon: 'error',
-        });
+        if (response.data.error === 'Email already registered') {
+          Swal.fire({
+            title: 'Error',
+            text: 'El usuario ya está registrado.',
+            icon: 'error',
+          });
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: 'Hubo un problema al intentar registrarse. Por favor, inténtalo de nuevo más tarde.',
+            icon: 'error',
+          });
+        }
       }
     } catch (error) {
       setIsLoading(false);
       console.error('Error al intentar registrar:', error);
+      Swal.fire({
+        title: 'Error',
+        text: 'Hubo un problema al intentar registrarse. Por favor, inténtalo de nuevo más tarde.',
+        icon: 'error',
+      });
     }
   };
 
@@ -195,3 +207,5 @@ const Register = () => {
 };
 
 export default Register;
+
+
