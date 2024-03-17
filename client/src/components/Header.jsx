@@ -82,7 +82,7 @@ const Header = () => {
                   BookPlace el rincon donde podrás disfrutar de ediciones exclusivas. Suscribete!!
                 </p>
                 <p className="text-lg relative z-20">
-                  Únete a nuestra comunidad de lectores.
+                  Únete a nuestra comunidad de lectores ubicados en Madrid.
                 </p>
                 <div className="flex flex-row-reverse flex-wrap justify-center gap-4 md:mb-5 md:gap-6 md:justify-end">
                   <button
