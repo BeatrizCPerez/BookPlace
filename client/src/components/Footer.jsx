@@ -9,7 +9,7 @@ const Footer = () => {
             <p>BookPlace</p>
           </div>
           <p className='p-2 text-green-700'>Calle Pedro José nº12 Madrid</p>
-              <p className='p-2 text-green-700'>Teléfono: 900-00-00-00</p>
+              <p className='p-2 text-green-700'>Teléfono: 900-00-00-00 / 10:00h-19:00h</p>
         </a>
         <p className="text-sm text-white sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
           © 2024 BookPlace —
