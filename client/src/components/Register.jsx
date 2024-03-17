@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useMediaQuery } from '@react-hook/media-query'; 
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -13,9 +14,9 @@ const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
   const videoRef = useRef(null); 
   const [isDesktop, setIsDesktop] = useState(false);
+  const isMobileAndHorizontal = useMediaQuery('(max-width: 768px) and (orientation: landscape)');
 
   useEffect(() => {
-
     if (videoRef.current && isDesktop) {
       videoRef.current.play();
     }
@@ -90,7 +91,7 @@ const Register = () => {
     <>
       <section className="relative">
         <Nav />
-        {isDesktop ? (
+        {isDesktop && !isMobileAndHorizontal ? (
           <video
             ref={videoRef}
             autoPlay

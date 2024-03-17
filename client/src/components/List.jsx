@@ -6,6 +6,7 @@ const List = () => {
   const [totalBooks, setTotalBooks] = useState(0);
   const [error, setError] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -17,9 +18,11 @@ const List = () => {
         const data = await response.json();
         setBooks(data.data);
         setTotalBooks(data.data.length);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching books:', error);
         setError('Error al obtener los datos. Por favor, intenta nuevamente más tarde.');
+        setLoading(false);
       }
     };
 
@@ -80,18 +83,25 @@ const List = () => {
 
         {error && <div>Error: {error}</div>}
 
-        <div className="relative mt-8">
-          <div className="relative -mb-6 w-full overflow-x-auto pb-6">
-            <ul
-              role="list"
-              className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
-            >
-              {books.slice(0, visibleBooks).map((book) => (
-                <BookCard key={book.id} book={book} />
-              ))}
-            </ul>
+        {loading ? (
+          <div className="text-white flex items-center justify-center h-32">
+            <div className="spinner-border text-teal-500 mr-3" role="status"></div>
+            <span>Cargando libros...</span>
           </div>
-        </div>
+        ) : (
+          <div className="relative mt-8">
+            <div className="relative -mb-6 w-full overflow-x-auto pb-6">
+              <ul
+                role="list"
+                className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+              >
+                {books.slice(0, visibleBooks).map((book) => (
+                  <BookCard key={book.id} book={book} />
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
 
         {visibleBooks < totalBooks && (
           <div className="mt-12 flex px-4 justify-center">

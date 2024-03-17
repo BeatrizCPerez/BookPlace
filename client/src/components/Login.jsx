@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import Nav from './Nav';
 import Footer from './Footer';
 import axios from 'axios';
-import { useMediaQuery } from '@react-hook/media-query'; // Importación de useMediaQuery
+import { useMediaQuery } from '@react-hook/media-query'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
