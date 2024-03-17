@@ -16,7 +16,7 @@ const List = () => {
           throw new Error('Error al obtener los datos');
         }
         const data = await response.json();
-        setBooks(data.data);
+        setBooks(data.data.reverse()); // Invertir el orden de los libros
         setTotalBooks(data.data.length);
         setLoading(false);
       } catch (error) {
@@ -95,7 +95,7 @@ const List = () => {
                 role="list"
                 className="mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
               >
-                {books.slice(0).reverse().map((book, index) => (
+                {books.slice(0, visibleBooks).map((book, index) => (
                   <BookCard key={book.id} book={book} isNew={index < 4} />
                 ))}
               </ul>
@@ -119,8 +119,17 @@ const List = () => {
   );
 };
 
+const maxDescriptionLength = 150; // Define la longitud máxima de la descripción aquí
+
 const BookCard = ({ book, isNew }) => {
   const { Name, Author, Year, Img, Description } = book;
+
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  const truncateDescription = (text, maxLength) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+  };
 
   return (
     <li className={`bg-black text-blue-500 border-yellow-500 border overflow-hidden mb-8 relative ${isNew ? 'animate-pulse' : ''}`}>
@@ -139,7 +148,18 @@ const BookCard = ({ book, isNew }) => {
           <h3 className="text-lg font-semibold text-white">{Name}</h3>
           <p className="text-green-700">Author: {Author}</p>
           <p className="text-white">{`Año: ${Year}`}</p>
-          <p className="text-gray-500">{Description}</p>
+          <p className="text-gray-500">
+            {showFullDescription ? Description : truncateDescription(Description, maxDescriptionLength)}
+          </p>
+          {/* Agregamos un botón para ver más si la descripción es larga */}
+          {Description.length > maxDescriptionLength && (
+            <button
+              className="text-sm font-semibold text-indigo-600 bg-transparent hover:bg-gray-100 focus:bg-gray-100 rounded-md px-4 py-2 mt-2"
+              onClick={() => setShowFullDescription(!showFullDescription)}
+            >
+              {showFullDescription ? 'Ver menos' : 'Ver más'}
+            </button>
+          )}
         </div>
       </div>
     </li>
@@ -147,4 +167,10 @@ const BookCard = ({ book, isNew }) => {
 };
 
 export default List;
+
+
+
+
+
+
 
