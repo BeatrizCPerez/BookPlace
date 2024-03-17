@@ -69,7 +69,7 @@ const Contact = () => {
               <p className='p-2'>4. Si tu libro está disponible, hacemos la reserva y abonarás el precio al recogerlo.</p>
               <p className='p-2'>5. Recuerda, tienes mínimo de 15 dias para disfrutarlo.</p>
               <p className='p-2 text-green-700'>Estamos en calle Pedro José nº12.</p>
-              <p className='p-2 text-green-700'>CP: 25018 Madrid 10:00h-19:00h</p>
+              <p className='p-2 text-green-700'>CP: 25018 Madrid / De 10:00h-19:00h</p>
               <p className='p-2 text-green-700'>Teléfono: 900-00-00-00</p>
             </h2>
 
