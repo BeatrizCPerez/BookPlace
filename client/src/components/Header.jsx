@@ -20,6 +20,13 @@ const scrollToAbout = () => {
   }
 };
 
+const scrollToContact = () => {
+  const contactSection = document.getElementById('contact');
+  if (contactSection) {
+    contactSection.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 const Header = () => {
   const videoRef = useRef(null);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -38,15 +45,8 @@ const Header = () => {
     };
   }, []);
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div id='header' className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
+    <div id='header' className="relative" style={{ height: isDesktop ? '90vh' : '90vh', overflow: 'hidden' }}>
       <ScrollToTop />
       {isDesktop && !isMobileAndHorizontal ? (
         <video
