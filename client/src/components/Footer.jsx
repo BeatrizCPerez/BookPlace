@@ -3,23 +3,20 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="text-white bg-black body-font relative z-20">
-      <div className="container px-5 py-8 mx-auto flex flex-col items-center">
-        <div className="flex flex-col items-center sm:flex-row">
-          <div className="flex items-center justify-center sm:justify-start mb-4 sm:mb-0">
-            <div className="ml-3 text-white">
-              <p>BookPlace</p>
-              <p className='text-green-700'>Calle Pedro José nº12 Madrid</p>
-              <p className='text-green-700'>Teléfono: 900-00-00-00 / 10:00h-19:00h</p>
-            </div>
+      <div className="container px-5 py-8 mx-auto flex flex-wrap items-center justify-between">
+        <div className="flex flex-col items-center">
+          <div className="ml-3 text-white">
+            <p>BookPlace</p>
+            <p className='text-green-700'>Calle Pedro José nº12 Madrid</p>
+            <p className='text-green-700'>Teléfono: 900-00-00-00 / 10:00h-19:00h</p>
           </div>
-          <p className="text-sm text-white mt-4 sm:mt-0 sm:ml-4 sm:border-l-2 sm:border-gray-200 sm:pl-4 sm:py-2">
-            © 2024 BookPlace —
-            <a href="https://twitter.com/knyttneve" className="text-white ml-1" rel="noopener noreferrer" target="_blank">
-              @BookPlace
-            </a>
-          </p>
         </div>
-        <div className="inline-flex mt-4 justify-center sm:justify-start">
+        <p className="text-sm text-white mt-4 md:mt-0">© 2024 BookPlace —
+          <a href="https://twitter.com/knyttneve" className="text-white ml-1" rel="noopener noreferrer" target="_blank">
+            @BookPlace
+          </a>
+        </p>
+        <div className="inline-flex mt-4 md:mt-0">
           <a href="https://facebook.com" className="text-white mr-4">
             <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
@@ -49,3 +46,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
