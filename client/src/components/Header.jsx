@@ -45,22 +45,16 @@ const Header = () => {
   }, []);
 
   return (
-    <div id='header' className="relative" style={{ height: isDesktop ? '95vh' : '95vh', overflow: 'hidden' }}>
+    <div id='header' className="relative" style={{ height: '95vh', overflow: 'hidden' }}>
       <ScrollToTop />
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `url('https://img.freepik.com/foto-gratis/gran-coleccion-libros-antiguos-estantes-madera-generados-ia_188544-29739.jpg?w=826&t=st=1710610681~exp=1710611281~hmac=a9182aaade0001eab120d67dc952bb76d5046bd6df5cd01d3a247826426ada6d')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed', 
-          zIndex: -1
-        }}
-      >
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
-      </div>
-    
+      <img
+        src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
+        alt="Fondo"
+        className="absolute w-full h-full object-cover"
+        style={{ zIndex: -1 }}
+      />
       <div className="py-12 md:py-16 lg:py-20 relative" style={{ zIndex: 1 }}>
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
         <div className="container m-auto px-6 space-y-8 text-white md:px-12 lg:px-20 relative z-10">
           <Fade bottom cascade>
             <div className="justify-center text-center gap-6 md:text-left md:flex lg:items-center lg:gap-16">
@@ -106,10 +100,10 @@ const Header = () => {
                     loading="lazy"
                   />
                 </div>
-                <div className="col-span-2 row-span-2">
+                <div className={`col-span-2 row-span-2 ${isMobile ? 'block' : 'hidden'}`}>
                   <img
                     src="https://t3.ftcdn.net/jpg/03/15/87/14/360_F_315871469_H0SM5Js5QGOGPQp319qEiR5jM7mZhfqp.jpg"
-                    className="w-full h-full object-cover object-top rounded-xl"
+                    className="w-full h-full object-cover object-top rounded-xl md:hidden"
                     width="640"
                     height="640"
                     alt="Libro 2"
@@ -119,7 +113,7 @@ const Header = () => {
                 {isDesktop && (
                   <div className="col-span-3 row-span-3">
                     <img
-                      src="https://st5.depositphotos.com/40408934/64828/i/450/depositphotos_648281386-stock-photo-hispanic-young-man-reading-book.jpg"
+                      src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
                       alt="Fondo"
                       className="w-full h-full object-cover object-top rounded-xl"
                     />
