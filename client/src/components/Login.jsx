@@ -12,31 +12,12 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const videoRef = useRef(null);
-  const [isDesktop, setIsDesktop] = useState(false);
-  const isMobileAndHorizontal = useMediaQuery('(max-width: 768px) and (orientation: landscape)');
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   useEffect(() => {
-    if (videoRef.current && isDesktop) {
+    if (videoRef.current) {
       videoRef.current.play();
     }
-  }, [isDesktop]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth > 768);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    // Scroll to the top when component mounts or updates
-    window.scrollTo(0, 0);
   }, []);
 
   const handleLogin = async () => {
@@ -78,7 +59,7 @@ const Login = () => {
   return (
     <>
       <section className="relative max-w-auto">
-        {isDesktop && !isMobileAndHorizontal ? (
+        {!isMobile && (
           <video
             ref={videoRef}
             autoPlay
@@ -89,14 +70,13 @@ const Login = () => {
           >
             <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
           </video>
-        ) : (
-          <img
-            src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
-            alt="Fondo"
-            className="absolute w-full h-full object-cover"
-            style={{ zIndex: -1 }}
-          />
         )}
+        <img
+          src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
+          alt="Fondo"
+          className="absolute w-full h-full object-cover"
+          style={{ zIndex: -1 }}
+        />
         <Nav />
         <div className="w-full lg:w-4/12 px-4 mx-auto pt-16 relative z-10">
           <div className="relative flex mt-[10px] flex-col  pb-5 break-words w-full shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -28,9 +28,8 @@ const scrollToContact = () => {
 };
 
 const Header = () => {
-  const videoRef = useRef(null);
   const [isDesktop, setIsDesktop] = useState(false);
-  const isMobileAndHorizontal = useMediaQuery('(max-width: 768px) and (orientation: landscape)');
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,9 +47,8 @@ const Header = () => {
   return (
     <div id='header' className="relative" style={{ height: isDesktop ? '90vh' : '95vh', overflow: 'hidden' }}>
       <ScrollToTop />
-      {isDesktop && !isMobileAndHorizontal ? (
+      {isDesktop && (
         <video
-          ref={videoRef}
           autoPlay
           loop
           muted
@@ -59,7 +57,8 @@ const Header = () => {
         >
           <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
         </video>
-      ) : (
+      )}
+      {!isDesktop && (
         <img
           src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
           alt="Fondo"
@@ -117,23 +116,22 @@ const Header = () => {
                 <div className="col-span-2 row-span-2">
                   <img
                     src="https://t3.ftcdn.net/jpg/03/15/87/14/360_F_315871469_H0SM5Js5QGOGPQp319qEiR5jM7mZhfqp.jpg"
-                    className="w-full h-full object-cover object-top rounded-xl"
+                    className="w-full h-full object-cover object-top rounded-xl md:hidden" // Hide on mobile
                     width="640"
                     height="640"
                     alt="Libro 2"
                     loading="lazy"
                   />
                 </div>
-                <div className="col-span-3 row-span-3">
-                  <img
-                    src="https://lapiedradesisifo.com/wp-content/uploads/2016/07/student-with-an-ipad-itunes-u-100609219-orig.jpg"
-                    className="w-full h-full object-cover object-top rounded-xl"
-                    width="640"
-                    height="427"
-                    alt="Libro 3"
-                    loading="lazy"
-                  />
-                </div>
+                {isDesktop && (
+                  <div className="col-span-3 row-span-3">
+                    <img
+                      src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
+                      alt="Fondo"
+                      className="w-full h-full object-cover object-top rounded-xl"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </Fade>
