@@ -11,14 +11,9 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const videoRef = useRef(null);
-  const isMobile = useMediaQuery('(max-width: 768px)');
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
-  }, []);
+
+  
 
   const handleLogin = async () => {
     setIsLoading(true);
