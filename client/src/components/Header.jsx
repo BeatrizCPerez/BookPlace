@@ -49,7 +49,6 @@ const Header = () => {
       <ScrollToTop />
       {isDesktop && (
         <video
-          autoPlay
           loop
           muted
           className="absolute w-full h-full object-cover"

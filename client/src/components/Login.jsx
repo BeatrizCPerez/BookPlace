@@ -59,20 +59,8 @@ const Login = () => {
   return (
     <>
       <section className="relative max-w-auto">
-        {!isMobile && (
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            className="absolute w-full h-full object-cover"
-            style={{ zIndex: -1 }}
-          >
-            <source src="https://res.cloudinary.com/djysp2khi/video/upload/v1710603298/yng09oaogupe1lysqugu.mp4" type="video/mp4" />
-          </video>
-        )}
         <img
-          src="https://okdiario.com/img/2022/11/22/libros-4-635x358.jpg"
+          src="https://img.freepik.com/foto-gratis/gran-coleccion-libros-antiguos-estantes-madera-generados-ia_188544-29739.jpg?w=826&t=st=1710610681~exp=1710611281~hmac=a9182aaade0001eab120d67dc952bb76d5046bd6df5cd01d3a247826426ada6d"
           alt="Fondo"
           className="absolute w-full h-full object-cover"
           style={{ zIndex: -1 }}
