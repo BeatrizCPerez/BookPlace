@@ -46,7 +46,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div id='header' className="relative" style={{ height: '100vh', overflow: 'hidden' }}>
+    <div id='header' className="relative" style={{ height: '90vh', overflow: 'hidden' }}>
       <ScrollToTop />
       <img
         src="https://img.freepik.com/foto-gratis/gran-coleccion-libros-antiguos-estantes-madera-generados-ia_188544-29739.jpg?w=826&t=st=1710610681~exp=1710611281~hmac=a9182aaade0001eab120d67dc952bb76d5046bd6df5cd01d3a247826426ada6d"
