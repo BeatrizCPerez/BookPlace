@@ -45,7 +45,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div id='header' className="relative" style={{ height: '95vh', overflow: 'hidden' }}>
+    <div id='header' className="relative" style={{ height: '110vh', overflow: 'hidden' }}>
       <ScrollToTop />
       <img
         src="https://img.freepik.com/foto-gratis/gran-coleccion-libros-antiguos-estantes-madera-generados-ia_188544-29739.jpg?w=826&t=st=1710610681~exp=1710611281~hmac=a9182aaade0001eab120d67dc952bb76d5046bd6df5cd01d3a247826426ada6d"
@@ -104,14 +104,14 @@ const Header = () => {
                     alt="Libro 1"
                   />
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 lg:inline md:hidden">
                   <img
                     src="https://th.bing.com/th/id/OIP.yp1w7G2fEAaLbduCQOBXawHaE7?w=800&h=533&rs=1&pid=ImgDetMain"
                     className="w-full object-cover rounded-xl"
                     alt="Libro 1"
                   />
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 lg:inline md:hidden">
                   <img
                     src="https://img.freepik.com/foto-gratis/cerca-adultos-jovenes-disfrutando-lectura_23-2149134387.jpg?w=740&t=st=1710767966~exp=1710768566~hmac=3715ddc5e78f3636c2f1efb86d1c1c4b1592cdeaaebfed6a80396cd8d07a907f"
                     className="w-full object-cover rounded-xl"
