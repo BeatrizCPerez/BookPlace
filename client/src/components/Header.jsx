@@ -71,7 +71,7 @@ const Header = () => {
                 <p className="text-lg mb-5">
                   Únete a nuestra comunidad de lectores ubicados en Madrid.
                 </p>
-                <div className={`flex flex-row-reverse justify-center  mt-5 gap-4 md:gap-6 md:justify-end ${isMobile && isLandscape ? 'mb-6' : ''}`}>
+                <div className={`flex flex-row-reverse justify-center mt-5 gap-4 md:gap-6 md:justify-end ${isMobile && isLandscape ? 'mb-6' : ''}`}>
                   <button
                     type="button"
                     title="Reservar ahora"
@@ -80,14 +80,16 @@ const Header = () => {
                   >
                     <span className="text-white font-semibold">Reservar ahora</span>
                   </button>
-                  <button
-                    type="button"
-                    title="Sobre nosotr@s"
-                    className="py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600"
-                    onClick={scrollToAbout}
-                  >
-                    <span className="text-white font-semibold">Sobre nosotr@s</span>
-                  </button>
+                  {!isMobile && !isLandscape && (
+                    <button
+                      type="button"
+                      title="Sobre nosotr@s"
+                      className="py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600"
+                      onClick={scrollToAbout}
+                    >
+                      <span className="text-white font-semibold">Sobre nosotr@s</span>
+                    </button>
+                  )}
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4 md:w-6/12 lg:w-6/12 justify-center">
