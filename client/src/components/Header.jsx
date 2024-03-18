@@ -30,6 +30,7 @@ const scrollToContact = () => {
 const Header = () => {
   const [isDesktop, setIsDesktop] = useState(false);
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const isLandscape = useMediaQuery('(orientation: landscape)');
 
   useEffect(() => {
     const handleResize = () => {
@@ -57,7 +58,7 @@ const Header = () => {
       <div className="py-12 md:py-16 lg:py-20 relative z-10">
         <div className="container m-auto px-6 space-y-8 text-white md:px-12 lg:px-20">
           <Fade bottom cascade>
-            <div className="justify-center text-center gap-6 md:text-left md:flex lg:items-center lg:gap-16">
+            <div className={`justify-center text-center gap-6 md:text-left md:flex lg:items-center lg:gap-16 ${isMobile && isLandscape ? 'flex-col' : ''}`}>
               <div className="mb-6 space-y-6 md:mb-0 md:w-6/12 lg:w-6/12">
                 <h1 className="text-4xl text-gray-300 font-bold md:text-5xl">
                   <span className="relative mt-5 inline-block">
@@ -67,25 +68,25 @@ const Header = () => {
                 <p className='text-xl'>
                   BookPlace el rincon donde podrás disfrutar de ediciones exclusivas. Suscribete!!
                 </p>
-                <p className="text-lg">
+                <p className="text-lg mb-5">
                   Únete a nuestra comunidad de lectores ubicados en Madrid.
                 </p>
-                <div className="flex flex-row-reverse flex-wrap justify-center gap-4 md:mb-5 md:gap-6 md:justify-end">
+                <div className={`flex flex-row-reverse justify-center  mt-5 gap-4 md:gap-6 md:justify-end ${isMobile && isLandscape ? 'mb-6' : ''}`}>
                   <button
                     type="button"
                     title="Reservar ahora"
-                    className="w-full py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600 sm:w-max"
+                    className="py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600"
                     onClick={scrollToContact}
                   >
-                    <span className="block text-white font-semibold">Reservar ahora</span>
+                    <span className="text-white font-semibold">Reservar ahora</span>
                   </button>
                   <button
                     type="button"
                     title="Sobre nosotr@s"
-                    className="w-full py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600 sm:w-max"
+                    className="py-3 px-6 text-center rounded-xl transition bg-gray-700 shadow-xl hover:bg-gray-600 active:bg-gray-700 focus:bg-gray-600"
                     onClick={scrollToAbout}
                   >
-                    <span className="block text-white font-semibold">Sobre nosotr@s</span>
+                    <span className="text-white font-semibold">Sobre nosotr@s</span>
                   </button>
                 </div>
               </div>
