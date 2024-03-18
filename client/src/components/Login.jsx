@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const videoRef = useRef(null);
   const [isDesktop, setIsDesktop] = useState(false);
-  const isMobileAndHorizontal = useMediaQuery('(max-width: 768px) and (orientation: landscape)'); // Uso de useMediaQuery para detectar dispositivos móviles en orientación horizontal
+  const isMobileAndHorizontal = useMediaQuery('(max-width: 768px) and (orientation: landscape)');
 
   useEffect(() => {
     if (videoRef.current && isDesktop) {
@@ -34,6 +34,11 @@ const Login = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Scroll to the top when component mounts or updates
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleLogin = async () => {
     setIsLoading(true);
 
@@ -43,7 +48,6 @@ const Login = () => {
       if (response.data.success) {
         navigate('/HomeLogin');
       } else {
-  
         Swal.fire({
           title: 'Error',
           text: 'Credenciales inválidas. Por favor, inténtalo de nuevo.',

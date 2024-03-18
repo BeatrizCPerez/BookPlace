@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';  
 import Nav from './Nav';
 import Footer from './Footer';
@@ -15,30 +15,19 @@ const Register = () => {
   const [isDesktop, setIsDesktop] = useState(false);
   const isMobileAndHorizontal = useMediaQuery('(max-width: 768px) and (orientation: landscape)');
 
+  useEffect(() => {
+    // Scroll to the top when component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleRegister = async () => {
     try {
-      if (password.length < 6) {
-        Swal.fire({
-          title: 'Error',
-          text: 'La contraseña debe tener al menos 6 caracteres.',
-          icon: 'error',
-        });
-        return;
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        Swal.fire({
-          title: 'Error',
-          text: 'Por favor, introduce un correo electrónico válido.',
-          icon: 'error',
-        });
-        return;
-      }
-
+      // Validations
       setIsLoading(true);
 
       const response = await axios.post('https://back-iax6.onrender.com/api/users/register', {
+        firstName,
+        lastName,
         email,
         password,
       });
@@ -190,3 +179,4 @@ const Register = () => {
 };
 
 export default Register;
+
