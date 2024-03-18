@@ -45,7 +45,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div id='header' className="relative" style={{ height: '110vh', overflow: 'hidden' }}>
+    <div id='header' className="relative" style={{ height: '100vh', overflow: 'hidden' }}>
       <ScrollToTop />
       <img
         src="https://img.freepik.com/foto-gratis/gran-coleccion-libros-antiguos-estantes-madera-generados-ia_188544-29739.jpg?w=826&t=st=1710610681~exp=1710611281~hmac=a9182aaade0001eab120d67dc952bb76d5046bd6df5cd01d3a247826426ada6d"
@@ -90,34 +90,38 @@ const Header = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4 md:w-6/12 lg:w-6/12 justify-center">
-                <div className="mb-4">
+                <div className='mt-10'>
                   <img
                     src="https://t3.ftcdn.net/jpg/03/15/87/14/360_F_315871469_H0SM5Js5QGOGPQp319qEiR5jM7mZhfqp.jpg"
                     className="w-full object-cover rounded-xl"
                     alt="Libro 2"
                   />
                 </div>
-                <div className="mb-4">
+                <div  className='mt-10'>
                   <img
                     src="https://estaticos-cdn.prensaiberica.es/clip/6fe3113d-af11-41bd-84ac-9340c4ee95f0_16-9-discover-aspect-ratio_default_0.webp"
                     className="w-full object-cover rounded-xl"
                     alt="Libro 1"
                   />
                 </div>
-                <div className="mb-4 lg:inline md:hidden">
-                  <img
-                    src="https://th.bing.com/th/id/OIP.yp1w7G2fEAaLbduCQOBXawHaE7?w=800&h=533&rs=1&pid=ImgDetMain"
-                    className="w-full object-cover rounded-xl"
-                    alt="Libro 1"
-                  />
-                </div>
-                <div className="mb-4 lg:inline md:hidden">
-                  <img
-                    src="https://img.freepik.com/foto-gratis/cerca-adultos-jovenes-disfrutando-lectura_23-2149134387.jpg?w=740&t=st=1710767966~exp=1710768566~hmac=3715ddc5e78f3636c2f1efb86d1c1c4b1592cdeaaebfed6a80396cd8d07a907f"
-                    className="w-full object-cover rounded-xl"
-                    alt="Libro 1"
-                  />
-                </div>
+                {!isMobile && (
+                  <>
+                    <div className="mb-10">
+                      <img
+                        src="https://th.bing.com/th/id/OIP.yp1w7G2fEAaLbduCQOBXawHaE7?w=800&h=533&rs=1&pid=ImgDetMain"
+                        className="w-full object-cover rounded-xl"
+                        alt="Libro 1"
+                      />
+                    </div>
+                    <div className="mb-10">
+                      <img
+                        src="https://img.freepik.com/foto-gratis/cerca-adultos-jovenes-disfrutando-lectura_23-2149134387.jpg?w=740&t=st=1710767966~exp=1710768566~hmac=3715ddc5e78f3636c2f1efb86d1c1c4b1592cdeaaebfed6a80396cd8d07a907f"
+                        className="w-full object-cover rounded-xl"
+                        alt="Libro 1"
+                      />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </Fade>
