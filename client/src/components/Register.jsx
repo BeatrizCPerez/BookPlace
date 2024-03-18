@@ -23,6 +23,15 @@ const Register = () => {
   const handleRegister = async () => {
     try {
       // Validations
+      if (password.length < 6) {
+        Swal.fire({
+          title: 'Error',
+          text: 'La contraseña debe tener al menos 6 caracteres.',
+          icon: 'error',
+        });
+        return; // Exit early if password is too short
+      }
+
       setIsLoading(true);
 
       const response = await axios.post('https://back-iax6.onrender.com/api/users/register', {
@@ -75,12 +84,12 @@ const Register = () => {
     <>
       <section className="relative">
         <Nav />
-           <img
-            src="https://img.freepik.com/foto-gratis/gran-coleccion-libros-antiguos-estantes-madera-generados-ia_188544-29739.jpg?w=826&t=st=1710610681~exp=1710611281~hmac=a9182aaade0001eab120d67dc952bb76d5046bd6df5cd01d3a247826426ada6d"
-            alt="Fondo"
-            className="absolute w-full h-full object-cover"
-            style={{ zIndex: -1 }}
-          />
+        <img
+          src="https://img.freepik.com/foto-gratis/gran-coleccion-libros-antiguos-estantes-madera-generados-ia_188544-29739.jpg?w=826&t=st=1710610681~exp=1710611281~hmac=a9182aaade0001eab120d67dc952bb76d5046bd6df5cd01d3a247826426ada6d"
+          alt="Fondo"
+          className="absolute w-full h-full object-cover"
+          style={{ zIndex: -1 }}
+        />
         <div className="w-full h- lg:w-4/12 px-4 mx-auto pt-6">
           <div className="relative flex mt-[40px] flex-col  break-words w-full shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg bg-blueGray-200">
             <div className="rounded-t mb-0 px-6 py-6">
@@ -166,4 +175,3 @@ const Register = () => {
 };
 
 export default Register;
-
