@@ -86,7 +86,7 @@ const List = () => {
         {loading ? (
           <div className="text-white flex items-center justify-center h-32">
             <div className="spinner-border text-teal-500 mr-3" role="status"></div>
-            <span>Cargando libros...</span>
+            <span>Cargando lista de libros...</span>
           </div>
         ) : (
           <div className="relative mt-8">
@@ -167,10 +167,6 @@ const BookCard = ({ book, isNew }) => {
 };
 
 export default List;
-
-
-
-
 
 
 
