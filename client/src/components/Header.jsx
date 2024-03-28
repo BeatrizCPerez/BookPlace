@@ -103,7 +103,7 @@ const Header = () => {
                 <div  className='mt-10'>
                   <img
                     src="https://estaticos-cdn.prensaiberica.es/clip/6fe3113d-af11-41bd-84ac-9340c4ee95f0_16-9-discover-aspect-ratio_default_0.webp"
-                    className="w-full object-cover rounded-xl"
+                    className="w-full h-full object-cover rounded-xl"
                     alt="Libro 1"
                   />
                 </div>
