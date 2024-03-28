@@ -29,11 +29,17 @@ const Contact = () => {
   };
 
   const handleSubmit = () => {
+    
+    if (!formData.name || !formData.email ) {
+      Swal.fire('Error', 'Por favor, completa todos los campos obligatorios.', 'error');
+      return;
+    }
+  
     if (!isValidEmail) {
       Swal.fire('Error', 'Por favor, introduce un correo electrónico válido.', 'error');
       return;
     }
-
+  
     setIsSubmitting(true);
     axios.post('https://back-iax6.onrender.com/api/enviar-formulario-contacto', formData)
       .then(() => {
@@ -54,6 +60,7 @@ const Contact = () => {
         Swal.fire('Error', 'Hubo un error al enviar el formulario de contacto. Por favor, inténtalo de nuevo más tarde.', 'error');
       });
   };
+  
 
   return (
     <section id="contact" className="border-t-8 border-green-500 bg-gray-100 text-gray-800 body-font relative flex flex-col lg:flex-row md:flex-row">
@@ -150,7 +157,7 @@ const Contact = () => {
 
         <div className="relative mb-2">
           <label htmlFor="eresSocio" className="leading-7 text-xs text-gray-300">
-            ¿Eres Socio? <span className="text-red-500">*</span>
+            ¿Eres Socio? 
           </label>
           <select
             required
